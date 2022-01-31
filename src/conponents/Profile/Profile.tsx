@@ -1,5 +1,6 @@
 import React from "react";
 import classes from './Profile.module.css';
+import MyPosts from "./MyPosts/MyPosts";
 
 const Profile = () => {
     return (
@@ -11,20 +12,7 @@ const Profile = () => {
                 <div>
                     <img className={classes.avatar} src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQwWMJbZoZ26ZyYB8M-1e7OLBVUWXRLNSO6A&usqp=CAU' alt='avatar'/>
                 </div>
-                <div>
-                    My posts
-                    <div>
-                        New post
-                    </div>
-                    <div>
-                        <div>
-                            post1
-                        </div>
-                        <div>
-                            post2
-                        </div>
-                    </div>
-                </div>
+                <MyPosts/>
             </div>
         </div>
     )
