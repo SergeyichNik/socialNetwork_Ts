@@ -1,0 +1,14 @@
+
+.appNav {
+    grid-area: nav;
+    padding: 10px 20px;
+    text-align: start;
+    color: white;
+    line-height: 30px;
+    background-color: #4E96D2;
+}
+
+.appMainContent {
+    grid-area: content;
+    background-color: #fff;
+}

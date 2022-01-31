@@ -1,8 +1,9 @@
 import React from "react";
+import classes from './Navigation.module.css';
 
 const Navigation = () => {
     return (
-            <nav className='app-nav'>
+            <nav className={classes.appNav}>
                 <a>Profile</a>
                 <div>
 
