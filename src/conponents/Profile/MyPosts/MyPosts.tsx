@@ -8,10 +8,13 @@ const MyPosts = () => {
     return (
         <div>
             My posts
-
             <div>
-                <Post/>
-                <Post/>
+                <textarea></textarea>
+                <button>Add post</button>
+            </div>
+            <div className={classes.posts}>
+                <Post message ={'hi'}/>
+                <Post message={'how are you'}/>
             </div>
         </div>
     )

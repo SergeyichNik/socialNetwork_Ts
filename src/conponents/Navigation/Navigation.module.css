@@ -2,10 +2,14 @@
 .appNav {
     grid-area: nav;
     padding: 10px 20px;
+    background-color: #4E96D2;
+}
+
+.link {
+    text-decoration-line: none;
     text-align: start;
     color: white;
     line-height: 30px;
-    background-color: #4E96D2;
 }
 
 .appMainContent {
