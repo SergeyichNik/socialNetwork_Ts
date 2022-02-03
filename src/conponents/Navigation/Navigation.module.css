@@ -1,15 +1,20 @@
 
 .appNav {
+    min-height: 500px;
     grid-area: nav;
     padding: 10px 20px;
     background-color: #4E96D2;
 }
 
-.link {
+.appNav a {
     text-decoration-line: none;
     text-align: start;
     color: white;
     line-height: 30px;
+}
+
+.appNav a.active {
+    color: gold;
 }
 
 .appMainContent {
