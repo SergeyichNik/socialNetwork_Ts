@@ -7,21 +7,26 @@ const Navigation = () => {
         <div className={classes.appNav}>
 
             <div>
-                <NavLink className = { navData => navData.isActive ? classes.active : classes.item } to={'/Profile'}>Profile</NavLink>
+                <NavLink className={navData => navData.isActive ? classes.active : classes.item}
+                         to={'/Profile'}>Profile</NavLink>
             </div>
 
             <div>
-                <NavLink className={ navData => navData.isActive ? classes.active : classes.item } to={'/Dialogs'}>Messages</NavLink>
+                <NavLink className={navData => navData.isActive ? classes.active : classes.item}
+                         to={'/Dialogs'}>Messages</NavLink>
             </div>
 
             <div>
-                <NavLink className={ navData => navData.isActive ? classes.active : classes.item } to={'/News'}>News</NavLink>
+                <NavLink className={navData => navData.isActive ? classes.active : classes.item}
+                         to={'/News'}>News</NavLink>
             </div>
 
             <div>
-                <NavLink className={ navData => navData.isActive ? classes.active : classes.item } to={'/Music'}>Music</NavLink>
+                <NavLink className={navData => navData.isActive ? classes.active : classes.item}
+                         to={'/Music'}>Music</NavLink>
             </div>
-            <NavLink className={ navData => navData.isActive ? classes.active : classes.item } to={'/Settings'}>Settings</NavLink>
+            <NavLink className={navData => navData.isActive ? classes.active : classes.item}
+                     to={'/Settings'}>Settings</NavLink>
         </div>
     )
 }

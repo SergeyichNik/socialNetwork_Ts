@@ -1,0 +1,9 @@
+.mainContentImg {
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 0 8px darkslategray;
+}
+
+.avatar {
+    width: 100px;
+}
