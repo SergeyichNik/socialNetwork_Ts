@@ -6,8 +6,15 @@
 .dialogsItems {
 
 }
-
 .dialog {
+    display: flex;
+    align-items: center;
+}
+
+.dialog img {
+    margin-right: 0.5rem;
+    width: 2.5rem;
+
 
 }
 .dialog.active {

@@ -2,33 +2,48 @@ import classes from "./Dialogs.module.css";
 import React from "react";
 import {Message} from "./Message/Message";
 import {DialogsItem} from "./DialogItem/DialogsItem";
-import {dialogsDataType, messagesDataType} from "../..";
+import {dialogsDataType, messagesDataType} from "../../redux/state";
+import {NavLink, Route, Routes} from "react-router-dom";
+
 
 
 type propsType = {
-    dialogsData: dialogsDataType[],
-    messagesData: messagesDataType[]
+    state: {
+        dialogsData: dialogsDataType[],
+        messagesData: messagesDataType[]
+    }
 }
 
 
 export const Dialogs = (props: propsType) => {
-    const {dialogsData, messagesData} = props
+    const {dialogsData, messagesData} = props.state
     return (
         <div className={classes.dialogs}>
-            <ul className={classes.dialogsItems}>
+            <div className={classes.dialogsItems}>
                 {dialogsData.map((item) => {
                     return (
-                        <DialogsItem name={item.name} id={item.id}/>
+                        <NavLink key={Math.random()} to={`/Dialogs/${item.id}/`}>
+                            <DialogsItem key={item.id} name={item.name} id={item.id} avatar={item.avatar}/>
+                        </NavLink>
+
                     )
                 })}
-            </ul>
-            <ul className={classes.messages}>
-                {messagesData.map((item) => {
-                    return (
-                        <Message message={item.message} id={item.id}/>
-                    )
-                })}
-            </ul>
+            </div>
+            <div className={classes.messages}>
+                <Routes>
+                    {messagesData.map((item) => {
+                        return (
+                            <Route
+                                key={Math.random()}
+                                path={`/Dialogs/${item.id}`}
+                                element={<Message key={Math.random()} message={item.message} id={item.id}/>}
+                            />
+
+                        )
+                    })}
+                </Routes>
+
+            </div>
         </div>
     )
 }

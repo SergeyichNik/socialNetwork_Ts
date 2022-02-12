@@ -1,4 +1,5 @@
 import React from "react";
+import {Route, Routes } from "react-router-dom";
 import classes from "../Dialogs.module.css";
 
 type MessageType = {
@@ -7,5 +8,8 @@ type MessageType = {
 }
 
 export const Message: React.FC<MessageType> = ({message, id}) => {
-    return <ul key={id} className={classes.message}>{message}</ul>
+    return (
+            <div key={Math.random()} className={classes.message}>{message}</div>
+        )
+
 }
