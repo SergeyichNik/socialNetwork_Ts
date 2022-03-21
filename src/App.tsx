@@ -10,6 +10,9 @@ import {Music} from "./conponents/Music/Music";
 import {News} from "./conponents/News/News";
 import {Settings} from "./conponents/Settings/Settings";
 import {dialogsDataType, messagesDataType, postDataType} from "./redux/state";
+import {MessageArea} from "./conponents/Dialogs/Message/MessageArea/MessageArea";
+import classes from "./conponents/Dialogs/Dialogs.module.css";
+
 
 
 type stateType = {
@@ -39,8 +42,15 @@ function App(props: stateType) {
             <Navigation/>
             <div className='app-wrapper-content'>
                 <Routes>
-                    <Route path={'/Dialogs/*'}
-                           element={<Dialogs state={dialogsPage}/>}/>
+                    <Route path={'/Dialogs/*'} element={<Dialogs state={dialogsPage}/>}/>
+                    <Route path={'/Dialogs/Messages/*'} element={(
+                        <div className={classes.dialogs}>
+                            <Dialogs state={dialogsPage}/>
+                            <div >
+                                <MessageArea />
+                            </div>
+                        </div>
+                    )}/>
                     <Route path={'/Profile'}
                            element={<Profile
                                state={profilePage}

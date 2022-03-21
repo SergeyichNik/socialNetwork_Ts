@@ -1,6 +1,6 @@
 
 .appNav {
-    min-height: 500px;
+    min-height: 80vh;
     grid-area: nav;
     padding: 10px 20px;
     background-color: #4E96D2;

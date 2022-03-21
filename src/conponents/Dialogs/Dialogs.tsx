@@ -22,27 +22,12 @@ export const Dialogs = (props: propsType) => {
             <div className={classes.dialogsItems}>
                 {dialogsData.map((item) => {
                     return (
-                        <NavLink key={Math.random()} to={`/Dialogs/${item.id}/`}>
+                        <NavLink key={Math.random()} to={`/Dialogs/Messages/${item.id}`}>
                             <DialogsItem key={item.id} name={item.name} id={item.id} avatar={item.avatar}/>
                         </NavLink>
 
                     )
                 })}
-            </div>
-            <div className={classes.messages}>
-                <Routes>
-                    {messagesData.map((item) => {
-                        return (
-                            <Route
-                                key={Math.random()}
-                                path={`/Dialogs/${item.id}`}
-                                element={<Message key={Math.random()} message={item.message} id={item.id}/>}
-                            />
-
-                        )
-                    })}
-                </Routes>
-
             </div>
         </div>
     )

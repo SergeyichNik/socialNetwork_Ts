@@ -21,7 +21,7 @@ export const MyPosts = (props: stateType) => {
         setNewPostMessage(post)
     }
 
-    let getText = () => {
+    let onClickHandler = () => {
         addPost()
         setPost(newPostMessage)
     }
@@ -30,14 +30,8 @@ export const MyPosts = (props: stateType) => {
         <div>
             My posts
             <div>
-                <textarea
-                    value={post}
-                    onChange={onChangeHandler}
-                />
-                <button
-                    onClick={getText}
-                >Add post
-                </button>
+                <textarea value={post} onChange={onChangeHandler}/>
+                <button onClick={onClickHandler}>Add post</button>
             </div>
             <div className={classes.posts}>
                 {postData.map((item) => {

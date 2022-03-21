@@ -9,7 +9,7 @@ type MessageType = {
 
 export const Message: React.FC<MessageType> = ({message, id}) => {
     return (
-            <div key={Math.random()} className={classes.message}>{message}</div>
+            <div key={id} className={classes.message}>{message}</div>
         )
 
 }
