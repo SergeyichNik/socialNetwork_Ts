@@ -2,7 +2,7 @@ import classes from "./Dialogs.module.css";
 import React from "react";
 import {Message} from "./Message/Message";
 import {DialogsItem} from "./DialogItem/DialogsItem";
-import {dialogsDataType, messagesDataType} from "../../redux/state";
+import {dialogsDataType, messagesDataType} from "../../redux/store";
 import {NavLink, Route, Routes} from "react-router-dom";
 
 

@@ -1,7 +1,8 @@
 import React, {FC, useState} from "react";
 import classes from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import {ActionType, addPostAC, postDataType, updatePostAC} from "../../../redux/state";
+import {ActionType, postDataType} from "../../../redux/store";
+import {addPostAC, updatePostAC} from "../../../redux/profileReducer";
 
 type PropsType = {
     postData: postDataType[],

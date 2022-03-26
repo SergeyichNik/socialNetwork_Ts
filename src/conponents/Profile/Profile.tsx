@@ -2,7 +2,7 @@ import React, {FC} from "react";
 import classes from './Profile.module.css';
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {ActionType, postDataType} from "../../redux/state";
+import {ActionType, postDataType} from "../../redux/store";
 
 type PropsType = {
     state: {

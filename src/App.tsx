@@ -9,7 +9,7 @@ import {Route, Routes} from "react-router-dom";
 import {Music} from "./conponents/Music/Music";
 import {News} from "./conponents/News/News";
 import {Settings} from "./conponents/Settings/Settings";
-import {ActionType, dialogsDataType, messagesDataType, postDataType} from "./redux/state";
+import {ActionType, dialogsDataType, messagesDataType, postDataType} from "./redux/store";
 import {MessageArea} from "./conponents/Dialogs/Message/MessageArea/MessageArea";
 import classes from "./conponents/Dialogs/Dialogs.module.css";
 

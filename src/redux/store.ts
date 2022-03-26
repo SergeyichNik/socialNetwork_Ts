@@ -1,52 +1,38 @@
-import {v1} from "uuid";
 
-export type StateType = {
-    dialogsPage: {
-        dialogsData: dialogsDataType[],
-        messagesData: messagesDataType[]
-    },
-    profilePage: {
-        newPostMessage: string,
-        postData: postDataType[]
-    }
+import profileReducer, {AddPostActionType, UpdatePostActionType} from "./profileReducer";
+import dialogsReducer, {SendNewMessageActionType, UpdateMessageBodyActionType} from "./dialogsReducer";
+
+export type DialogsPageType = {
+    dialogsData: dialogsDataType[],
+    messagesData: messagesDataType[],
+    newMessageBody: string
 }
-
+export type ProfilePageType = {
+    newPostMessage: string,
+    postData: postDataType[]
+}
+export type StateType = {
+    dialogsPage: DialogsPageType
+    profilePage: ProfilePageType
+}
 export type postDataType = {
     id: number,
     message: string,
     likesCount: number
 }
-
 export type dialogsDataType = {
     id: number,
     name: string,
     avatar: string
 }
-
 export type messagesDataType = {
     id: string
     message: string
 }
 
-export type AddPostActionType = {
-    type: "ADD_POST"
-}
-export type UpdatePostActionType = {
-    type: "UPDATE_NEW_POST_TEXT"
-    text: string
-}
-export type UpdateMessageBodyActionType = {
-    type: "UPDATE_MESSAGE_BODY",
-    text: string
-}
-export type SendNewMessageActionType = {
-    type: "SEND_NEW_MESSAGE"
-}
 export type ActionType =
     AddPostActionType | UpdatePostActionType |
     UpdateMessageBodyActionType | SendNewMessageActionType
-
-
 
 export const store = {
     _state: {
@@ -103,58 +89,12 @@ export const store = {
     },
 
     dispatch (action: ActionType) {
-        switch (action.type) {
-            case "ADD_POST":
-                let newPost = {
-                    id: Math.random(),
-                    message: this._state.profilePage.newPostMessage,
-                    likesCount: 0
-                }
-                this._state.profilePage.postData.push(newPost);
-                this._state.profilePage.newPostMessage = '';
-                this._callSubscriber(this._state);
-            break;
-            case "UPDATE_NEW_POST_TEXT":
-                this._state.profilePage.newPostMessage = action.text
-                this._callSubscriber(this._state);
-            break;
-            case "SEND_NEW_MESSAGE":
-                const newMessage: messagesDataType = {
-                    id: v1(),
-                    message: this._state.dialogsPage.newMessageBody
-                }
-                this._state.dialogsPage.messagesData.push(newMessage)
-                this._callSubscriber(this._state);
-                this._state.dialogsPage.newMessageBody = ''
-            break;
-            case "UPDATE_MESSAGE_BODY":
-                    this._state.dialogsPage.newMessageBody = action.text
-                    this._callSubscriber(this._state);
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._callSubscriber(this._state)
     }
 
 }
 
-export const addPostAC = (): AddPostActionType => {
-    return {
-        type: "ADD_POST"
-    }
-}
-export const updatePostAC = (text: string): UpdatePostActionType => {
-    return {
-        type: "UPDATE_NEW_POST_TEXT",
-        text
-    }
-}
-export const sendMessageAC = (): SendNewMessageActionType => {
-    return {
-        type: "SEND_NEW_MESSAGE"
-    }
-}
-export const updateNewMessageBodyAC = (text: string): UpdateMessageBodyActionType => {
-    return {
-        type: "UPDATE_MESSAGE_BODY",
-        text
-    }
-}
+
 
