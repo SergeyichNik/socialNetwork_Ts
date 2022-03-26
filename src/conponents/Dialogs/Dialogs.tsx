@@ -1,34 +1,39 @@
 import classes from "./Dialogs.module.css";
-import React from "react";
-import {Message} from "./Message/Message";
+import React, {FC} from "react";
 import {DialogsItem} from "./DialogItem/DialogsItem";
-import {dialogsDataType, messagesDataType} from "../../redux/store";
-import {NavLink, Route, Routes} from "react-router-dom";
+import {DialogsPageType} from "../../redux/store";
+import {NavLink} from "react-router-dom";
+import {MessageArea} from "./Message/MessageArea/MessageArea";
 
 
 
-type propsType = {
-    state: {
-        dialogsData: dialogsDataType[],
-        messagesData: messagesDataType[]
-    }
+type PropsType = {
+    dialogsPage: DialogsPageType
+    sendMessage: () => void
+    updateNewMessageBody: (text: string) => void
 }
 
 
-export const Dialogs = (props: propsType) => {
-    const {dialogsData, messagesData} = props.state
+export const Dialogs: FC<PropsType> = (props) => {
+    const {dialogsPage, updateNewMessageBody, sendMessage} = props
+
+    const dialogsMap = dialogsPage.dialogsData.map((item) => {
+        return (
+            <NavLink key={item.id} to={`/Dialogs/Messages/${item.id}`}>
+                <DialogsItem key={item.id} name={item.name} id={item.id} avatar={item.avatar}/>
+            </NavLink>
+        )
+    })
+
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItems}>
-                {dialogsData.map((item) => {
-                    return (
-                        <NavLink key={Math.random()} to={`/Dialogs/Messages/${item.id}`}>
-                            <DialogsItem key={item.id} name={item.name} id={item.id} avatar={item.avatar}/>
-                        </NavLink>
-
-                    )
-                })}
+                {dialogsMap}
             </div>
+            <MessageArea messagesData={dialogsPage.messagesData}
+                         value={dialogsPage.newMessageBody}
+                         updateNewMessageBody={updateNewMessageBody}
+                         sendMessage={sendMessage}/>
         </div>
     )
 }

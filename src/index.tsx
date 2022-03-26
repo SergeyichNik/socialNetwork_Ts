@@ -12,8 +12,7 @@ let rerenderEntireTree = (state: StateType) => {
 
     ReactDOM.render(
         <BrowserRouter>
-            <App appState={store.getState()}
-                 dispatch={store.dispatch.bind(store)}
+            <App store={store}
             />
         </BrowserRouter>,
         document.getElementById('root')
@@ -21,6 +20,7 @@ let rerenderEntireTree = (state: StateType) => {
 }
 
 rerenderEntireTree(store.getState())
+
 store.subscribe(() => {
     rerenderEntireTree(store.getState())
 })

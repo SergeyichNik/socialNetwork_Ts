@@ -30,6 +30,13 @@ export type messagesDataType = {
     message: string
 }
 
+export type StoreType = {
+    _state: StateType,
+    getState: () => StateType,
+    subscribe: (callback: () => void) => void
+    dispatch: (action: ActionType) => void
+}
+
 export type ActionType =
     AddPostActionType | UpdatePostActionType |
     UpdateMessageBodyActionType | SendNewMessageActionType

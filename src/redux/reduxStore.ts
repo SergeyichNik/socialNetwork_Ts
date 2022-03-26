@@ -9,6 +9,9 @@ const reducers = combineReducers({
     dialogsPage: dialogsReducer
 })
 
+type RootState = typeof reducers;
+export type ReduxStateType = ReturnType<RootState>
+
 const store = createStore(reducers);
 
 

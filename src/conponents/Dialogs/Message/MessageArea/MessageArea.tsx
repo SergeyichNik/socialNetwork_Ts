@@ -1,24 +1,26 @@
 import classes from "../../Dialogs.module.css";
-import {ActionType, messagesDataType,} from "../../../../redux/store";
+import {messagesDataType,} from "../../../../redux/store";
 import {ChangeEvent, FC} from "react";
 import {Message} from "../Message";
-import {sendMessageAC, updateNewMessageBodyAC} from "../../../../redux/dialogsReducer";
 
 type PropsType = {
     messagesData: messagesDataType[]
-    dispatch: (action: ActionType) => void
     value: string
+    sendMessage: () => void
+    updateNewMessageBody: (text: string) => void
 }
 
-export const MessageArea: FC<PropsType> = ({messagesData, dispatch, value}) => {
-    const messagesMap = messagesData.map(item => <Message message={item.message} id={item.id}/>)
+export const MessageArea: FC<PropsType> = (props) => {
+    const {messagesData, value, sendMessage, updateNewMessageBody} = props
+
+    const messagesMap = messagesData.map(item => <Message key={item.id} message={item.message} id={item.id}/>)
 
     const onClickHandler = () => {
-        dispatch(sendMessageAC())
+        sendMessage()
     }
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        dispatch(updateNewMessageBodyAC(e.currentTarget.value))
+        updateNewMessageBody(e.currentTarget.value)
     }
 
     return (

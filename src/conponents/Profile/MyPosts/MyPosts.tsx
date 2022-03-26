@@ -1,35 +1,31 @@
 import React, {FC, useState} from "react";
 import classes from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import {ActionType, postDataType} from "../../../redux/store";
-import {addPostAC, updatePostAC} from "../../../redux/profileReducer";
+import {postDataType} from "../../../redux/store";
 
 type PropsType = {
     postData: postDataType[],
+    updateNewPostText: (text: string) => void
     newPostMessage: string,
-    dispatch: (action: ActionType) => void,
+    addPost: () => void,
 }
 
-export const MyPosts: FC<PropsType> = ({postData, newPostMessage, dispatch}) => {
-
-    const [post, setPost] = useState(newPostMessage)
-
+export const MyPosts: FC<PropsType> = (props) => {
+    const {postData, newPostMessage, addPost, updateNewPostText} = props
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setPost(e.target.value)
-        dispatch(updatePostAC(post))
+        updateNewPostText(e.currentTarget.value)
     }
 
     let onClickHandler = () => {
-        dispatch(addPostAC())
-        setPost(newPostMessage)
+        addPost()
     }
 
     return (
         <div>
             My posts
             <div>
-                <textarea value={post} onChange={onChangeHandler}/>
+                <textarea value={newPostMessage} onChange={onChangeHandler}/>
                 <button onClick={onClickHandler}>Add post</button>
             </div>
             <div className={classes.posts}>
