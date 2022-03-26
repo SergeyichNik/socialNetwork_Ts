@@ -23,7 +23,8 @@ type StateType = {
         },
         dialogsPage: {
             dialogsData: dialogsDataType[],
-            messagesData: messagesDataType[]
+            messagesData: messagesDataType[],
+            newMessageBody: string
         }
     },
     dispatch: (action: ActionType) => void,
@@ -45,7 +46,9 @@ const App: FC<StateType> = ({appState, dispatch}) => {
                         <div className={classes.dialogs}>
                             <Dialogs state={dialogsPage}/>
                             <div >
-                                <MessageArea />
+                                <MessageArea messagesData={dialogsPage.messagesData}
+                                             value={dialogsPage.newMessageBody}
+                                             dispatch={dispatch}/>
                             </div>
                         </div>
                     )}/>

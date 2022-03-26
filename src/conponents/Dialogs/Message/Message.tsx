@@ -1,10 +1,9 @@
 import React from "react";
-import {Route, Routes } from "react-router-dom";
 import classes from "../Dialogs.module.css";
 
 type MessageType = {
     message: string,
-    id: number
+    id: string
 }
 
 export const Message: React.FC<MessageType> = ({message, id}) => {

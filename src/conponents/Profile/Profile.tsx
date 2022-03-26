@@ -21,7 +21,6 @@ const Profile: FC<PropsType> = ({state, dispatch}) => {
             <MyPosts postData={postData}
                      newPostMessage={newPostMessage}
                      dispatch={dispatch}
-
             />
 
         </div>
