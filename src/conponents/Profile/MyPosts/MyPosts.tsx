@@ -1,28 +1,26 @@
-import React, {useState} from "react";
+import React, {FC, useState} from "react";
 import classes from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import {postDataType} from "../../../redux/state";
+import {ActionType, postDataType} from "../../../redux/state";
 
-type stateType = {
+type PropsType = {
     postData: postDataType[],
     newPostMessage: string,
-    addPost: () => void,
-    setNewPostMessage: (text: string) => void
+    dispatch: (action: ActionType) => void,
 }
 
-export const MyPosts = (props: stateType) => {
-    const {postData, addPost, setNewPostMessage, newPostMessage} = props
+export const MyPosts: FC<PropsType> = ({postData, newPostMessage, dispatch}) => {
 
     const [post, setPost] = useState(newPostMessage)
 
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setPost(e.target.value)
-        setNewPostMessage(post)
+        dispatch({type: "UPDATE_NEW_POST_TEXT", text: post})
     }
 
     let onClickHandler = () => {
-        addPost()
+        dispatch({type: "ADD_POST"})
         setPost(newPostMessage)
     }
 

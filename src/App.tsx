@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 
 import './App.css';
 import Header from "./conponents/Header/Header";
@@ -9,13 +9,13 @@ import {Route, Routes} from "react-router-dom";
 import {Music} from "./conponents/Music/Music";
 import {News} from "./conponents/News/News";
 import {Settings} from "./conponents/Settings/Settings";
-import {dialogsDataType, messagesDataType, postDataType} from "./redux/state";
+import {ActionType, dialogsDataType, messagesDataType, postDataType} from "./redux/state";
 import {MessageArea} from "./conponents/Dialogs/Message/MessageArea/MessageArea";
 import classes from "./conponents/Dialogs/Dialogs.module.css";
 
 
 
-type stateType = {
+type StateType = {
     appState: {
         profilePage: {
             postData: postDataType[],
@@ -26,15 +26,13 @@ type stateType = {
             messagesData: messagesDataType[]
         }
     },
-    addPost: () => void,
-    setNewPostMessage: (text: string) => void
+    dispatch: (action: ActionType) => void,
 }
 
 
-function App(props: stateType) {
+const App: FC<StateType> = ({appState, dispatch}) => {
 
-    const {profilePage, dialogsPage} = props.appState
-    const {addPost, setNewPostMessage} = props
+    const {profilePage, dialogsPage} = appState
 
     return (
         <div className='app-wrapper'>
@@ -54,8 +52,7 @@ function App(props: stateType) {
                     <Route path={'/Profile'}
                            element={<Profile
                                state={profilePage}
-                               addPost={addPost}
-                               setNewPostMessage={setNewPostMessage}
+                               dispatch={dispatch}
                            />}/>
                     <Route path={'/News'} element={<News/>}/>
                     <Route path={'/Music'} element={<Music/>}/>

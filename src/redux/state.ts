@@ -26,6 +26,15 @@ export type messagesDataType = {
     message: string
 }
 
+export type AddPostActionType = {
+    type: "ADD_POST"
+}
+export type UpdatePostActionType = {
+    type: "UPDATE_NEW_POST_TEXT"
+    text: string
+}
+export type ActionType = AddPostActionType | UpdatePostActionType
+
 
 
 export const store = {
@@ -76,25 +85,27 @@ export const store = {
         console.log('state')
     },
 
-    setNewPostMessage(text: string) {
-        this._state.profilePage.newPostMessage = text
-
-    },
-
-    addPost () {
-        let newPost = {
-            id: Math.random(),
-            message: this._state.profilePage.newPostMessage,
-            likesCount: 0
-        }
-        this._state.profilePage.postData.push(newPost);
-        this._state.profilePage.newPostMessage = '';
-        this._callSubscriber(this._state)
-    },
-
     subscribe (observer: any) {
         this._callSubscriber = observer
     },
+
+    dispatch (action: ActionType) {
+        switch (action.type) {
+            case "ADD_POST":
+                let newPost = {
+                    id: Math.random(),
+                    message: this._state.profilePage.newPostMessage,
+                    likesCount: 0
+                }
+                this._state.profilePage.postData.push(newPost);
+                this._state.profilePage.newPostMessage = '';
+                this._callSubscriber(this._state);
+            break;
+            case "UPDATE_NEW_POST_TEXT":
+                this._state.profilePage.newPostMessage = action.text
+                this._callSubscriber(this._state);
+        }
+    }
 
 }
 
