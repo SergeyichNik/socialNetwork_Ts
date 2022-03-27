@@ -8,20 +8,9 @@ import {Route, Routes} from "react-router-dom";
 import {Music} from "./conponents/Music/Music";
 import {News} from "./conponents/News/News";
 import {Settings} from "./conponents/Settings/Settings";
-import {ActionType,StateType} from "./redux/store";
-import {DialogsContainer} from "./conponents/Dialogs/DialogsContainer";
+import DialogsContainer from "./conponents/Dialogs/DialogsContainer";
 
-
-
-type PropsType = {
-    store: {
-       getState: () => StateType,
-       dispatch: (action: ActionType) => void
-    }
-}
-
-
-const App: FC<PropsType> = ({store}) => {
+const App: FC = () => {
 
 
     return (
@@ -30,8 +19,8 @@ const App: FC<PropsType> = ({store}) => {
             <Navigation/>
             <div className='app-wrapper-content'>
                 <Routes>
-                    <Route path={'/Dialogs/*'} element={<DialogsContainer store={store}/>}/>
-                    <Route path={'/Profile'} element={<Profile store={store}/>}/>
+                    <Route path={'/Dialogs/*'} element={<DialogsContainer />}/>
+                    <Route path={'/Profile'} element={<Profile/>}/>
                     <Route path={'/News'} element={<News/>}/>
                     <Route path={'/Music'} element={<Music/>}/>
                     <Route path={'/Settings'} element={<Settings/>}/>

@@ -1,7 +1,8 @@
 import React, {FC} from "react";
-import {ActionType, StateType} from "../../redux/store";
+import {ActionType, DispatchType, StateType} from "../../redux/store";
 import {Dialogs} from "./Dialogs";
 import {sendMessageAC, updateNewMessageBodyAC} from "../../redux/dialogsReducer";
+import {connect} from "react-redux";
 
 type PropsType = {
     store: {
@@ -10,21 +11,23 @@ type PropsType = {
     }
 }
 
-
-
-export const DialogsContainer: FC<PropsType> = ({store}) => {
-    const state = store.getState()
-
-    const updateNewMessageBody = (text: string) => {
-
-        store.dispatch(updateNewMessageBodyAC(text))
+let mapStateToProps = (state: StateType) => {
+    return {
+        dialogsPage: state.dialogsPage
     }
-
-    const sendMessage = () => {
-        store.dispatch(sendMessageAC())
-    }
-
-    return <Dialogs dialogsPage={state.dialogsPage}
-                    sendMessage={sendMessage}
-                    updateNewMessageBody={updateNewMessageBody}/>
 }
+
+let mapDispatchToProps = (dispatch: DispatchType) => {
+    return {
+        updateNewMessageBody: (text: string) => {
+            dispatch(updateNewMessageBodyAC(text))
+        },
+        sendMessage: () => {
+            dispatch(sendMessageAC())
+        }
+    }
+}
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+
+export default DialogsContainer

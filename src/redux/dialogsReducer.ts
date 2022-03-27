@@ -62,12 +62,11 @@ export const dialogsReducer = (state = initialState, action: ActionType) => {
                 id: v1(),
                 message: state.newMessageBody
             }
-            state.messagesData.push(newMessage)
+            state = {...state, messagesData: [...state.messagesData, newMessage]}
             state.newMessageBody = ''
             return state;
         case "UPDATE_MESSAGE_BODY":
-            state.newMessageBody = action.text
-            return state;
+            return state = {...state, newMessageBody: action.text}
         default:
             return state
     }

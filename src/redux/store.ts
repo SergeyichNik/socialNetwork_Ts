@@ -29,7 +29,7 @@ export type messagesDataType = {
     id: string
     message: string
 }
-
+export type DispatchType = (action: ActionType) => void
 export type StoreType = {
     _state: StateType,
     getState: () => StateType,

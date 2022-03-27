@@ -1,17 +1,16 @@
-import React, {FC, useState} from "react";
+import React, {FC} from "react";
 import classes from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import {postDataType} from "../../../redux/store";
+import {ProfilePageType} from "../../../redux/store";
 
 type PropsType = {
-    postData: postDataType[],
     updateNewPostText: (text: string) => void
-    newPostMessage: string,
+    profilePage: ProfilePageType
     addPost: () => void,
 }
 
 export const MyPosts: FC<PropsType> = (props) => {
-    const {postData, newPostMessage, addPost, updateNewPostText} = props
+    const {addPost, updateNewPostText, profilePage} = props
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         updateNewPostText(e.currentTarget.value)
@@ -25,11 +24,11 @@ export const MyPosts: FC<PropsType> = (props) => {
         <div>
             My posts
             <div>
-                <textarea value={newPostMessage} onChange={onChangeHandler}/>
+                <textarea value={profilePage.newPostMessage} onChange={onChangeHandler}/>
                 <button onClick={onClickHandler}>Add post</button>
             </div>
             <div className={classes.posts}>
-                {postData.map((item) => {
+                {profilePage.postData.map((item) => {
                     return (
                         <Post key={item.id} message={item.message} id={item.id} likes={item.likesCount}/>
                     )
