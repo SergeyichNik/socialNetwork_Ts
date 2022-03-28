@@ -5,12 +5,15 @@ import {
     messagesDataType,
 } from "./store";
 
+const UPDATE_MESSAGE_BODY = "UPDATE_MESSAGE_BODY"
+const SEND_NEW_MESSAGE = "SEND_NEW_MESSAGE"
+
 export type UpdateMessageBodyActionType = {
-    type: "UPDATE_MESSAGE_BODY",
+    type: typeof UPDATE_MESSAGE_BODY,
     text: string
 }
 export type SendNewMessageActionType = {
-    type: "SEND_NEW_MESSAGE"
+    type: typeof SEND_NEW_MESSAGE
 }
 
 export const sendMessageAC = (): SendNewMessageActionType => {
@@ -57,7 +60,7 @@ const initialState: DialogsPageType = {
 
 export const dialogsReducer = (state = initialState, action: ActionType) => {
     switch (action.type) {
-        case "SEND_NEW_MESSAGE":
+        case SEND_NEW_MESSAGE:
             const newMessage: messagesDataType = {
                 id: v1(),
                 message: state.newMessageBody
@@ -65,7 +68,7 @@ export const dialogsReducer = (state = initialState, action: ActionType) => {
             state = {...state, messagesData: [...state.messagesData, newMessage]}
             state.newMessageBody = ''
             return state;
-        case "UPDATE_MESSAGE_BODY":
+        case UPDATE_MESSAGE_BODY:
             return state = {...state, newMessageBody: action.text}
         default:
             return state

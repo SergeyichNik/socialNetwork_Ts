@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import {Users} from "./Users";
-import {followAC, unfollowAC, UsersDataType, UsersReducerActionsTypes} from "../../redux/usersReducer";
+import {followAC, setUsersAC, unfollowAC, UsersDataType, UsersReducerActionsTypes} from "../../redux/usersReducer";
 import {StateType} from "../../redux/store";
 
 export type UsersReducerDT = (action: UsersReducerActionsTypes) => void
@@ -18,6 +18,9 @@ const mapDispatchToProps = (dispatch: UsersReducerDT) => {
         },
         onFollowClick: (userId: string) => {
             dispatch(followAC(userId))
+        },
+        setUsers: (users: UsersDataType[]) => {
+            dispatch(setUsersAC(users))
         }
     }
 }

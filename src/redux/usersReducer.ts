@@ -1,7 +1,6 @@
-import {v1} from "uuid";
-
-export const FOLLOW = "FOLLOW"
-export const UNFOLLOW = "UNFOLLOW"
+const FOLLOW = "FOLLOW"
+const UNFOLLOW = "UNFOLLOW"
+const SET_USERS = "SET_USERS"
 
 export type UsersDataType = {
     id: string,
@@ -23,7 +22,11 @@ export type UnfollowActionType = {
     type: typeof UNFOLLOW,
     userId: string
 }
-export type UsersReducerActionsTypes = FollowActionType | UnfollowActionType
+export type SetUsersActionType = {
+    type: typeof SET_USERS
+    users: UsersDataType[]
+}
+export type UsersReducerActionsTypes = FollowActionType | UnfollowActionType | SetUsersActionType
 
 export const followAC = (userId: string): FollowActionType => {
     return {
@@ -37,26 +40,27 @@ export const unfollowAC = (userId: string): UnfollowActionType => {
         userId
     }
 }
+export const setUsersAC = (users: UsersDataType[]): SetUsersActionType => {
+    return {
+        type: SET_USERS,
+        users
+    }
+}
 
 
-const initialState: UsersDataType[] = [
-    {id: v1(), userName: 'Rastislav', status: 'my status is status',
-        userImg:' https://cdn-icons-png.flaticon.com/512/147/147144.png',
-        isFollowed: false, location: {country: 'Russia', city: 'Moscow'} },
-    {id: v1(), userName: 'Bratislav', status: 'my status is status',
-        userImg:' https://cdn-icons-png.flaticon.com/512/147/147144.png',
-        isFollowed: true, location: {country: 'Belarus', city: 'Minsk'} },
-    {id: v1(), userName: 'Vladislav', status: 'my status is status',
-        userImg:' https://cdn-icons-png.flaticon.com/512/147/147144.png',
-        isFollowed: false, location: {country: 'Uzbekistan', city: 'Samarkand'} }
-]
+
+const initialState: UsersDataType[] = []
 
 export const usersReducer = (state = initialState, action: UsersReducerActionsTypes) => {
     switch (action.type) {
-        case "FOLLOW":
-            return state = state.map((item) => item.id === action.userId ? {...item, isFollowed: true} : item)
-        case "UNFOLLOW":
-            return state = state.map((item) => item.id === action.userId ? {...item, isFollowed: false} : item)
+        case FOLLOW:
+            return state = state.map((item) => item.id === action.userId
+                ? {...item, isFollowed: true} : item)
+        case UNFOLLOW:
+            return state = state.map((item) => item.id === action.userId
+                ? {...item, isFollowed: false} : item)
+        case SET_USERS:
+            return [...state, ...action.users ]
         default:
             return state
     }

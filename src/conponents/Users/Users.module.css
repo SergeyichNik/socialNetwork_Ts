@@ -12,6 +12,7 @@
 }
 
 .imgBtn {
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 100px;
@@ -21,6 +22,16 @@
 .imgBtn img {
     width: 100px;
 }
+
+.imgBtn button {
+    position: absolute;
+    width: 100px;
+    bottom: 0;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 12px;
+}
+
 .text {
     display: flex;
     width: 100%;
@@ -33,8 +44,9 @@
     justify-content: space-between;
 }
 
-.nameStatus {
-
+.name {
+    font-size: 20px;
+    font-weight: 500;
 }
 
 .location {

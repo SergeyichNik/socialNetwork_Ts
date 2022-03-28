@@ -1,21 +1,24 @@
 import {ActionType, ProfilePageType} from "./store";
 
+const ADD_POST = "ADD_POST"
+const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT"
+
 export type AddPostActionType = {
-    type: "ADD_POST"
+    type: typeof ADD_POST
 }
 export type UpdatePostActionType = {
-    type: "UPDATE_NEW_POST_TEXT"
+    type: typeof UPDATE_NEW_POST_TEXT
     text: string
 }
 
 export const addPostAC = (): AddPostActionType => {
     return {
-        type: "ADD_POST"
+        type: ADD_POST
     }
 }
 export const updatePostAC = (text: string): UpdatePostActionType => {
     return {
-        type: "UPDATE_NEW_POST_TEXT",
+        type: UPDATE_NEW_POST_TEXT,
         text
     }
 }
@@ -31,7 +34,7 @@ const initialState: ProfilePageType = {
 
 const profileReducer = (state = initialState, action: ActionType) => {
     switch (action.type) {
-        case "ADD_POST":
+        case ADD_POST:
             const newPost = {
                 id: Math.random(),
                 message: state.newPostMessage,
@@ -40,7 +43,7 @@ const profileReducer = (state = initialState, action: ActionType) => {
             state = {...state, postData: [...state.postData, newPost]};
             state.newPostMessage = '';
             return state
-        case "UPDATE_NEW_POST_TEXT":
+        case UPDATE_NEW_POST_TEXT:
             return state = {...state, newPostMessage: action.text}
         default:
             return state
