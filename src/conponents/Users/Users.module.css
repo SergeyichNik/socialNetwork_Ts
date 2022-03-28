@@ -1,0 +1,42 @@
+.container {
+
+
+}
+
+.user {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 8px darkslategray;
+}
+
+.imgBtn {
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    padding: 10px 10px 10px 20px;
+}
+
+.imgBtn img {
+    width: 100px;
+}
+.text {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 20px;
+}
+.textItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.nameStatus {
+
+}
+
+.location {
+
+}

@@ -4,10 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
-import {StateType} from "./redux/store";
 import store from "./redux/reduxStore";
 import {Provider} from "react-redux";
-
 
 
 ReactDOM.render(

@@ -1,6 +1,7 @@
 
 import profileReducer, {AddPostActionType, UpdatePostActionType} from "./profileReducer";
 import dialogsReducer, {SendNewMessageActionType, UpdateMessageBodyActionType} from "./dialogsReducer";
+import {UsersDataType} from "./usersReducer";
 
 export type DialogsPageType = {
     dialogsData: dialogsDataType[],
@@ -14,6 +15,7 @@ export type ProfilePageType = {
 export type StateType = {
     dialogsPage: DialogsPageType
     profilePage: ProfilePageType
+    usersPage: UsersDataType[]
 }
 export type postDataType = {
     id: number,
@@ -30,12 +32,6 @@ export type messagesDataType = {
     message: string
 }
 export type DispatchType = (action: ActionType) => void
-export type StoreType = {
-    _state: StateType,
-    getState: () => StateType,
-    subscribe: (callback: () => void) => void
-    dispatch: (action: ActionType) => void
-}
 
 export type ActionType =
     AddPostActionType | UpdatePostActionType |
