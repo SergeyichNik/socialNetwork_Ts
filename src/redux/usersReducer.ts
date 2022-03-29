@@ -3,24 +3,28 @@ const UNFOLLOW = "UNFOLLOW"
 const SET_USERS = "SET_USERS"
 
 export type UsersDataType = {
-    id: string,
-    userName: string,
-    status: string,
-    userImg: string,
-    isFollowed: boolean,
-    location: {
-        country: string,
-        city: string
+    followed: boolean,
+    id: number,
+    name: string,
+    photos: {
+        large?: string,
+        small?: string
     }
+    status: string,
+    location?: {
+        country?: string,
+        city?: string
+    }
+    uniqueUrlName?: string
 }
 
 export type FollowActionType = {
     type: typeof FOLLOW,
-    userId: string
+    userId: number
 }
 export type UnfollowActionType = {
     type: typeof UNFOLLOW,
-    userId: string
+    userId: number
 }
 export type SetUsersActionType = {
     type: typeof SET_USERS
@@ -28,13 +32,13 @@ export type SetUsersActionType = {
 }
 export type UsersReducerActionsTypes = FollowActionType | UnfollowActionType | SetUsersActionType
 
-export const followAC = (userId: string): FollowActionType => {
+export const followAC = (userId: number): FollowActionType => {
     return {
         type: FOLLOW,
         userId
     }
 }
-export const unfollowAC = (userId: string): UnfollowActionType => {
+export const unfollowAC = (userId: number): UnfollowActionType => {
     return {
         type: UNFOLLOW,
         userId
@@ -55,10 +59,10 @@ export const usersReducer = (state = initialState, action: UsersReducerActionsTy
     switch (action.type) {
         case FOLLOW:
             return state = state.map((item) => item.id === action.userId
-                ? {...item, isFollowed: true} : item)
+                ? {...item, followed: true} : item)
         case UNFOLLOW:
             return state = state.map((item) => item.id === action.userId
-                ? {...item, isFollowed: false} : item)
+                ? {...item, followed: false} : item)
         case SET_USERS:
             return [...state, ...action.users ]
         default:

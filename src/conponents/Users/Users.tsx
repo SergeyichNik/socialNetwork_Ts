@@ -1,32 +1,36 @@
 import classes from "./Users.module.css";
 import {UsersDataType} from "../../redux/usersReducer";
 import {FC} from "react";
-import {v1} from "uuid";
+import axios from "axios";
+import avatar from "../../assets/images/avatar.png"
 
 type PropsType = {
     usersPage: UsersDataType[]
-    onUnfollowClick: (userId: string) => void
-    onFollowClick: (userId: string) => void
-    setUsers: (users: ({ userImg: string; location: { country: string; city: string }; id: string; userName: string; isFollowed: boolean; status: string } | { userImg: string; location: { country: string; city: string }; id: string; userName: string; isFollowed: boolean; status: string } | { userImg: string; location: { country: string; city: string }; id: string; userName: string; isFollowed: boolean; status: string })[]) => void
+    onUnfollowClick: (userId: number) => void
+    onFollowClick: (userId: number) => void
+    setUsers: (users: UsersDataType[]) => void
 }
 
 
 export const Users: FC<PropsType> = (props) => {
     const {usersPage, onUnfollowClick, onFollowClick, setUsers} = props
 
-    const users = [
-        {id: v1(), userName: 'Rastislav', status: 'my status is status',
-            userImg:' https://cdn-icons-png.flaticon.com/512/147/147144.png',
-            isFollowed: false, location: {country: 'Russia', city: 'Moscow'} },
-        {id: v1(), userName: 'Bratislav', status: 'my status is status',
-            userImg:' https://cdn-icons-png.flaticon.com/512/147/147144.png',
-            isFollowed: true, location: {country: 'Belarus', city: 'Minsk'} },
-        {id: v1(), userName: 'Vladislav', status: 'my status is status',
-            userImg:' https://cdn-icons-png.flaticon.com/512/147/147144.png',
-            isFollowed: false, location: {country: 'Uzbekistan', city: 'Samarkand'} }
+    const users: UsersDataType[] = [
+        {followed: false,
+            id: 2323,
+            name: 'Rastislav',
+            photos:{
+                small: ' https://cdn-icons-png.flaticon.com/512/147/147144.png'
+            },
+            status: 'my status is status',
+            location: {country: 'Russia', city: 'Moscow'},
+        },
     ]
+     
     if (usersPage.length === 0) {
-        setUsers(users)
+        axios.get("https://social-network.samuraijs.com/api/1.0/users")
+            .then(response => setUsers(response.data.items))
+
     }
 
     const usersMap = usersPage.map(item => {
@@ -41,19 +45,26 @@ export const Users: FC<PropsType> = (props) => {
         return (
             <div key={item.id} className={classes.user}>
                 <div className={classes.imgBtn}>
-                    <img src={item.userImg} alt="avatar"/>
-                    {item.isFollowed
+                    <img src={item.photos.small
+                        ? item.photos.small
+                        : avatar} alt="avatar"/>
+                    {item.followed
                         ? <button onClick={onUnfollowClickHandler}>Unfollow</button>
                         : <button onClick={onFollowClickHandler}>Follow</button>}
                 </div>
                 <div className={classes.text}>
                     <div className={classes.textItem}>
-                        <div className={classes.name}>{item.userName}</div>
+                        <div className={classes.name}>{item.name}</div>
                         <div>{item.status}</div>
                     </div>
                     <div className={classes.textItem}>
-                        <div>{item.location.country}</div>
-                        <div>{item.location.city}</div>
+                        <div>{item.location
+                            ? item.location.country
+                            : 'No country'
+                        }</div>
+                        <div>{item.location
+                            ? item.location.city
+                            : 'No city'}</div>
                     </div>
                 </div>
             </div>

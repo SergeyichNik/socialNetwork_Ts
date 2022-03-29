@@ -2,6 +2,7 @@ import {connect} from "react-redux";
 import {Users} from "./Users";
 import {followAC, setUsersAC, unfollowAC, UsersDataType, UsersReducerActionsTypes} from "../../redux/usersReducer";
 import {StateType} from "../../redux/store";
+import UsersClassComponent from "./UsersClassComponent";
 
 export type UsersReducerDT = (action: UsersReducerActionsTypes) => void
 
@@ -13,10 +14,10 @@ const mapStateToProps = (state: StateType) => {
 
 const mapDispatchToProps = (dispatch: UsersReducerDT) => {
     return {
-        onUnfollowClick: (userId: string) => {
+        onUnfollowClick: (userId: number) => {
             dispatch(unfollowAC(userId))
         },
-        onFollowClick: (userId: string) => {
+        onFollowClick: (userId: number) => {
             dispatch(followAC(userId))
         },
         setUsers: (users: UsersDataType[]) => {
@@ -25,4 +26,4 @@ const mapDispatchToProps = (dispatch: UsersReducerDT) => {
     }
 }
 
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users)
+export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersClassComponent)
