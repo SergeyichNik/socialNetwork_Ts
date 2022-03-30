@@ -49,6 +49,6 @@
     font-weight: 500;
 }
 
-.location {
-
+.selectedPage {
+    font-weight: bold;
 }

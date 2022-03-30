@@ -5,28 +5,46 @@ import avatar from "../../assets/images/avatar.png";
 import axios from "axios";
 
 type PropsType = {
-    usersPage: UsersDataType[]
+    users: UsersDataType[]
     onUnfollowClick: (userId: number) => void
     onFollowClick: (userId: number) => void
     setUsers: (users: UsersDataType[]) => void
+    setCurrentPage: (page: number) => void
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
 
 class UsersClassComponent extends React.Component<PropsType> {
-    constructor(props: PropsType) {
-        super(props);
-        if (this.props.usersPage.length === 0) {
-            axios.get("https://social-network.samuraijs.com/api/1.0/users")
-                .then(response => this.props.setUsers(response.data.items))
 
-        };
+    componentDidMount() {
+        if (this.props.users.length === 0) {
+            axios.get(
+                `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+                .then(response => this.props.setUsers(response.data.items))
+        }
     }
 
+    onCurrentPageChange(page: number) {
+        this.props.setCurrentPage(page)
+        axios.get(
+            `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`)
+            .then(response => this.props.setUsers(response.data.items))
+    }
 
     render() {
+        const {pageSize, totalUsersCount, currentPage, setCurrentPage} = this.props
+
+        const pageCount = Math.ceil(totalUsersCount / pageSize)
+        let arrPages = []
+        for (let i = 1; i <= pageCount; i++) {
+            arrPages.push(i)
+        }
 
         return (
             <div className={classes.container}>
-                {this.props.usersPage.map(item => {
+                {arrPages.map(item => <span onClick={() => setCurrentPage(item)} className={currentPage === item ? classes.selectedPage : ''} key={item}>{item}</span>)}
+                {this.props.users.map(item => {
 
                     const onUnfollowClickHandler = () => {
                         this.props.onUnfollowClick(item.id)

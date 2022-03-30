@@ -1,7 +1,7 @@
 
 import profileReducer, {AddPostActionType, UpdatePostActionType} from "./profileReducer";
 import dialogsReducer, {SendNewMessageActionType, UpdateMessageBodyActionType} from "./dialogsReducer";
-import {UsersDataType} from "./usersReducer";
+import {UsersDataType, UsersPageType} from "./usersReducer";
 
 export type DialogsPageType = {
     dialogsData: dialogsDataType[],
@@ -15,7 +15,7 @@ export type ProfilePageType = {
 export type StateType = {
     dialogsPage: DialogsPageType
     profilePage: ProfilePageType
-    usersPage: UsersDataType[]
+    usersPage: UsersPageType
 }
 export type postDataType = {
     id: number,

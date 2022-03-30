@@ -1,6 +1,7 @@
 const FOLLOW = "FOLLOW"
 const UNFOLLOW = "UNFOLLOW"
 const SET_USERS = "SET_USERS"
+const SET_CURRENT_PAGE = "SET_CURRENT_PAGE"
 
 export type UsersDataType = {
     followed: boolean,
@@ -17,6 +18,12 @@ export type UsersDataType = {
     }
     uniqueUrlName?: string
 }
+export type UsersPageType = {
+    users: UsersDataType[],
+    pageSize: number,
+    totalUsersCount: number,
+    currentPage: number
+}
 
 export type FollowActionType = {
     type: typeof FOLLOW,
@@ -30,7 +37,12 @@ export type SetUsersActionType = {
     type: typeof SET_USERS
     users: UsersDataType[]
 }
-export type UsersReducerActionsTypes = FollowActionType | UnfollowActionType | SetUsersActionType
+export type SetCurrentPageActionType = {
+    type: typeof SET_CURRENT_PAGE
+    currentPage: number
+}
+export type UsersReducerActionsTypes = FollowActionType | UnfollowActionType
+    | SetUsersActionType | SetCurrentPageActionType
 
 export const followAC = (userId: number): FollowActionType => {
     return {
@@ -50,21 +62,37 @@ export const setUsersAC = (users: UsersDataType[]): SetUsersActionType => {
         users
     }
 }
+export const setCurrentPageAC = (page: number): SetCurrentPageActionType => {
+    return {
+        type: SET_CURRENT_PAGE,
+        currentPage: page
+    }
+}
 
 
-
-const initialState: UsersDataType[] = []
+const initialState: UsersPageType = {
+    users: [],
+    pageSize: 4,
+    totalUsersCount: 13,
+    currentPage: 3
+}
 
 export const usersReducer = (state = initialState, action: UsersReducerActionsTypes) => {
     switch (action.type) {
         case FOLLOW:
-            return state = state.map((item) => item.id === action.userId
-                ? {...item, followed: true} : item)
+            return {
+                ...state, users: state.users.map((item) => item.id === action.userId
+                    ? {...item, followed: true} : item)
+            }
         case UNFOLLOW:
-            return state = state.map((item) => item.id === action.userId
-                ? {...item, followed: false} : item)
+            return {
+                ...state, users: state.users.map((item) => item.id === action.userId
+                    ? {...item, followed: false} : item)
+            }
         case SET_USERS:
-            return [...state, ...action.users ]
+            return {...state, users: action.users}
+        case "SET_CURRENT_PAGE":
+            return {...state, currentPage: action.currentPage}
         default:
             return state
     }
