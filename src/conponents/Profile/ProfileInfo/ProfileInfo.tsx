@@ -9,13 +9,13 @@ export const ProfileInfo = () => {
     const profile = useSelector(selectFromProfileReducer)
 
     return (
-        <div>
+        <div className={classes.wrapper}>
 
             <img className={classes.mainContentImg} src='https://thumbs.dreamstime.com/b/winter-header-banner-3532254.jpg' alt='content-img'/>
             <img className={classes.avatar} src={profile?.photos?.small} alt='avatar'/>
-            <p>{profile?.fullName}</p>
+            <h3 className={classes.name}>{profile?.fullName}</h3>
 
-            <p>{profile?.aboutMe}</p>
+            <p className={classes.aboutMe}>{profile?.aboutMe}</p>
         </div>
     )
 }

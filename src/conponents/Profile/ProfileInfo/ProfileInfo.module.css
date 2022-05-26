@@ -1,3 +1,8 @@
+.wrapper {
+    position: relative;
+    border: 1px solid;
+}
+
 .mainContentImg {
     width: 100%;
     border-radius: 5px;
@@ -5,5 +10,25 @@
 }
 
 .avatar {
-    width: 100px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-10%);
+
+    width: 150px;
+    height: 150px;
+
+    box-shadow: 0 0 8px darkslategray;
+    border-radius: 100%;
+}
+
+.name {
+    text-transform: uppercase;
+    text-align: right;
+    margin-right: 20px;
+}
+.aboutMe {
+    text-transform: uppercase;
+    text-align: right;
+    margin-right: 20px;
 }
