@@ -1,6 +1,7 @@
 .wrapper {
     position: relative;
     border: 1px solid;
+    height: 350px;
 }
 
 .mainContentImg {

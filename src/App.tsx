@@ -21,7 +21,10 @@ const App: FC = () => {
             <div className='app-wrapper-content'>
                 <Routes>
                     <Route path={'/Dialogs'} element={<DialogsContainer />}/>
-                    <Route path={'/Profile/:userID'} element={<ProfileContainer/>}/>
+                    <Route path={'profile'}>
+                        <Route path={':userID'} element={<ProfileContainer/>}/>
+                    </Route>
+
                     <Route path={'/Users'} element={<UsersContainer/>}/>
                     <Route path={'/News'} element={<News/>}/>
                     <Route path={'/Music'} element={<Music/>}/>

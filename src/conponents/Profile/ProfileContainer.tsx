@@ -1,15 +1,14 @@
-import React, {FC, useEffect} from "react";
+import React, {useEffect} from "react";
 import Profile from "./Profile";
 import axios from "axios";
 import {useDispatch} from "react-redux";
 import {setUserProfileAC} from "../../redux/profileReducer";
 import {useParams} from "react-router-dom";
 
-const ProfileContainer: FC = () => {
+const ProfileContainer= () => {
 
     const dispatch = useDispatch()
     const {userID} = useParams()
-
 
     useEffect(() => {
         axios.get(
@@ -18,7 +17,7 @@ const ProfileContainer: FC = () => {
                 dispatch(setUserProfileAC(res.data))
             })
 
-    })
+    }, [])
 
     return <Profile/>
 }
