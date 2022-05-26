@@ -1,4 +1,5 @@
-import {ACTIONS_TYPES, UsersReducerActionsTypes} from "./action-creator/ActionCreator";
+import {UsersReducerActionsTypes} from "./action-creator/ActionCreator";
+import {StoreType} from "./reduxStore";
 
 export type UsersDataType = {
     followed: boolean,
@@ -33,16 +34,16 @@ const initialState: UsersPageType = {
 
 export const usersReducer = (state = initialState, action: UsersReducerActionsTypes) => {
     switch (action.type) {
-        case ACTIONS_TYPES.FOLLOW:
-        case ACTIONS_TYPES.UNFOLLOW:
+        case "FOLLOW":
+        case "UNFOLLOW":
             return {
                 ...state, users: state.users.map((item) => item.id === action.userId
                     ? {...item, ...action.payload} : item)
             }
-        case ACTIONS_TYPES.SET_USERS:
-        case ACTIONS_TYPES.SET_CURRENT_PAGE:
-        case ACTIONS_TYPES.SET_USERS_TOTAL_COUNT:
-        case ACTIONS_TYPES.TOGGLE_IS_FETCHING:
+        case "SET_USERS":
+        case "SET_CURRENT_PAGE":
+        case "SET_USERS_TOTAL_COUNT":
+        case "TOGGLE_IS_FETCHING":
             return {...state,
                 ...action.payload
             }
@@ -50,3 +51,5 @@ export const usersReducer = (state = initialState, action: UsersReducerActionsTy
             return state
     }
 }
+
+export const selectFromUsersReducer = (state: StoreType) => state.usersPage

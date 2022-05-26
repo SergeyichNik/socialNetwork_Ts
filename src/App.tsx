@@ -8,8 +8,8 @@ import {Music} from "./conponents/Music/Music";
 import {News} from "./conponents/News/News";
 import {Settings} from "./conponents/Settings/Settings";
 import DialogsContainer from "./conponents/Dialogs/DialogsContainer";
-import {UsersContainer} from "./conponents/Users/UsersContainer";
-import {ProfileContainer} from "./conponents";
+
+import {ProfileContainer, UsersContainer} from "./conponents";
 
 const App: FC = () => {
 
