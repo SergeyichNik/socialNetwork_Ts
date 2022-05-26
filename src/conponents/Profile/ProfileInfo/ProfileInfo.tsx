@@ -14,6 +14,7 @@ export const ProfileInfo = () => {
             <img className={classes.mainContentImg} src='https://thumbs.dreamstime.com/b/winter-header-banner-3532254.jpg' alt='content-img'/>
             <img className={classes.avatar} src={profile?.photos?.small} alt='avatar'/>
             <p>{profile?.fullName}</p>
+
             <p>{profile?.aboutMe}</p>
         </div>
     )
