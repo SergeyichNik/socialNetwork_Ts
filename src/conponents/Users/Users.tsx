@@ -2,6 +2,7 @@ import classes from "./Users.module.css";
 import {UsersDataType} from "../../redux/usersReducer";
 import React, {FC} from "react";
 import avatar from "../../assets/images/avatar.png"
+import {Link} from "react-router-dom";
 
 type PropsType = {
     users: UsersDataType[]
@@ -51,9 +52,11 @@ export const Users: FC<PropsType> = (props) => {
                 return (
                     <div key={item.id} className={classes.user}>
                         <div className={classes.imgBtn}>
-                            <img src={item.photos.small
-                                ? item.photos.small
-                                : avatar} alt="avatar"/>
+                            <Link to={`/profile/${item.id}`}>
+                                <img src={item.photos.small
+                                    ? item.photos.small
+                                    : avatar} alt="avatar"/>
+                            </Link>
                             {item.followed
                                 ? <button onClick={onUnfollowClickHandler}>Unfollow</button>
                                 : <button onClick={onFollowClickHandler}>Follow</button>}

@@ -84,15 +84,4 @@ const mapStateToProps = (state: StoreType) => {
     }
 }
 
-// const mapDispatchToProps = (dispatch: UsersReducerDT) => {
-//     unfollowAC,
-//     followAC,
-//     setUsersAC,
-//     setCurrentPageAC,
-//     setTotalUsersCount,
-//     toggleIsFetching
-//         }
-//     }
-// }
-
 export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersClassComponent)

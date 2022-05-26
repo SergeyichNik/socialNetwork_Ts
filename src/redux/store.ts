@@ -1,14 +1,13 @@
-
 import profileReducer, {AddPostActionType, UpdatePostActionType} from "./profileReducer";
 import dialogsReducer, {SendNewMessageActionType, UpdateMessageBodyActionType} from "./dialogsReducer";
-import {UsersDataType, UsersPageType} from "./usersReducer";
+import {UsersPageType} from "./usersReducer";
 
 export type DialogsPageType = {
     dialogsData: dialogsDataType[],
     messagesData: messagesDataType[],
     newMessageBody: string
 }
-export type ProfilePageType = {
+type ProfilePageType = {
     newPostMessage: string,
     postData: postDataType[]
 }
@@ -92,7 +91,7 @@ export const store = {
     },
 
     dispatch (action: ActionType) {
-        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        // this._state.profilePage = profileReducer(this._state.profilePage, action)
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
         this._callSubscriber(this._state)
     }

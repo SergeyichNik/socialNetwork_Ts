@@ -1,7 +1,8 @@
 import React, {FC} from "react";
 import classes from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import {ProfilePageType} from "../../../redux/store";
+import {ProfilePageType} from "../../../redux/profileReducer";
+
 
 type PropsType = {
     updateNewPostText: (text: string) => void
