@@ -1,10 +1,11 @@
-
+import {StoreType} from "./reduxStore";
 
 
 const initialState: AuthMeUserDataType = {
     id: null,
     email: null,
-    login: null
+    login: null,
+    isAuth: false,
 }
 
 
@@ -15,9 +16,11 @@ const authReducer = (
 ): AuthMeUserDataType  => {
     switch(action.type) {
         case "SET_USER_DATA":
+
             return {
                 ...state,
-                ...action.payload.data
+                ...action.payload.data,
+                isAuth: action.payload.isAuth
             }
         default:
             return state
@@ -27,10 +30,12 @@ const authReducer = (
 //action creators
 
 export const setUserDataAC = (data: AuthMeUserDataType) => {
+
     return {
         type: "SET_USER_DATA",
         payload: {
-            data
+            data,
+            isAuth: true
         }
     } as const
 }
@@ -39,10 +44,12 @@ export const setUserDataAC = (data: AuthMeUserDataType) => {
 export type AuthMeUserDataType = {
     id: null | number,
     email: null | string,
-    login: null | string
+    login: null | string,
+    isAuth: boolean
 }
 
 export type AuthReducerActionsType =
     | ReturnType<typeof setUserDataAC>
 
+export const selectFromAuthReducer = (state: StoreType) => state.auth
 export default authReducer;

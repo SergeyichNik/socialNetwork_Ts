@@ -2,25 +2,26 @@ import React, {useEffect} from 'react';
 import {Header} from "./Header";
 import axios from "axios";
 import {setTotalUsersCountAC, setUsersAC, toggleIsFetchingAC} from "../../redux/action-creator/ActionCreator";
-import {useDispatch} from "react-redux";
-import {AuthMeUserDataType, setUserDataAC} from "../../redux/auth-reducer";
+import {useDispatch, useSelector} from "react-redux";
+import {AuthMeUserDataType, selectFromAuthReducer, setUserDataAC} from "../../redux/auth-reducer";
 
 
 const HeaderContainer = () => {
     const dispatch = useDispatch()
+    const { isAuth, login } = useSelector(selectFromAuthReducer)
 
     useEffect(() => {
         axios.get<AuthMeResType<AuthMeUserDataType>>(
             `https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials: true})
             .then(res => {
-
+                console.log(res.data.data)
                 if (res.data.resultCode === 0) {
                     dispatch(setUserDataAC(res.data.data))
                 }
             })
-    })
+    }, [])
 
-    return <Header/>
+    return <Header isAuth={isAuth} login={login}/>
 };
 
 export { HeaderContainer };
