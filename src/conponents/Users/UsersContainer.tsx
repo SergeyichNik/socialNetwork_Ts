@@ -28,7 +28,8 @@ const  UsersContainer = () => {
         dispatch(toggleIsFetchingAC(true));
         if (users.length === 0) {
             axios.get(
-                `https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`)
+                `https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`,
+                { withCredentials: true })
                 .then(response => {
                     dispatch(toggleIsFetchingAC(false));
                     dispatch(setUsersAC(response.data.items));
