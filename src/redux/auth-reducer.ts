@@ -1,16 +1,18 @@
 
 
 
-const initialState: UserDataType = {
-    userID: null,
+const initialState: AuthMeUserDataType = {
+    id: null,
     email: null,
     login: null
 }
 
+
+
 const authReducer = (
-    state: UserDataType = initialState,
+    state: AuthMeUserDataType = initialState,
     action: AuthReducerActionsType
-):UserDataType  => {
+): AuthMeUserDataType  => {
     switch(action.type) {
         case "SET_USER_DATA":
             return {
@@ -24,7 +26,7 @@ const authReducer = (
 
 //action creators
 
-export const setUserDataAC = (data: UserDataType) => {
+export const setUserDataAC = (data: AuthMeUserDataType) => {
     return {
         type: "SET_USER_DATA",
         payload: {
@@ -34,8 +36,8 @@ export const setUserDataAC = (data: UserDataType) => {
 }
 
 //types
-type UserDataType = {
-    userID: null | number,
+export type AuthMeUserDataType = {
+    id: null | number,
     email: null | string,
     login: null | string
 }

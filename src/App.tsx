@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 
 import './App.css';
-import Header from "./conponents/Header/Header";
+
 import Navigation from "./conponents/Navigation/Navigation";
 import {Route, Routes} from "react-router-dom";
 import {Music} from "./conponents/Music/Music";
@@ -9,14 +9,14 @@ import {News} from "./conponents/News/News";
 import {Settings} from "./conponents/Settings/Settings";
 import DialogsContainer from "./conponents/Dialogs/DialogsContainer";
 
-import {ProfileContainer, UsersContainer} from "./conponents";
+import {HeaderContainer, ProfileContainer, UsersContainer} from "./conponents";
 
 const App: FC = () => {
 
 
     return (
         <div className='app-wrapper'>
-            <Header/>
+            <HeaderContainer/>
             <Navigation/>
             <div className='app-wrapper-content'>
                 <Routes>
