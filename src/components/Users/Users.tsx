@@ -3,7 +3,7 @@ import {UsersDataType} from "../../redux/usersReducer";
 import React, {FC} from "react";
 import avatar from "../../assets/images/avatar.png"
 import {Link} from "react-router-dom";
-import axios from "axios";
+import {apiUsers} from "../../api";
 
 type PropsType = {
     users: UsersDataType[]
@@ -60,29 +60,14 @@ export const Users: FC<PropsType> = (props) => {
                             </Link>
                             {item.followed
                                 ? <button onClick={() => {
-                                    axios.delete(
-                                        `https://social-network.samuraijs.com/api/1.0/follow/${item.id}`,
-                                        {
-                                            withCredentials: true,
-                                            headers: {
-                                                "API-Key": "17f3fe98-a96f-4c1a-a7eb-bebd7f1cb8ea"
-                                            }
-                                        })
+                                    apiUsers.unfollowRequest(item.id)
                                         .then(res => {
                                             if (res.data.resultCode === 0) {
                                                 onUnfollowClickHandler()
                                             }
                                         })}}>Unfollow</button>
                                 : <button onClick={() => {
-                                    axios.post(
-                                        `https://social-network.samuraijs.com/api/1.0/follow/${item.id}`,
-                                        {},
-                                        {
-                                            withCredentials: true,
-                                            headers: {
-                                                "API-Key": "17f3fe98-a96f-4c1a-a7eb-bebd7f1cb8ea"
-                                            }
-                                        })
+                                    apiUsers.followRequest(item.id)
                                         .then(res => {
                                             if (res.data.resultCode === 0) {
                                                 onFollowClickHandler()

@@ -15,13 +15,29 @@ export const  apiUsers = {
             `users?page=${currentPage}&count=${pageSize}`,
             { withCredentials: true })
             .then(res => res.data)
+    },
+    unfollowRequest(id: number) {
+        return instance.delete<ResponseType>(`follow/${id}`)
+    },
+    followRequest(id: number) {
+        return instance.post<ResponseType>(`follow/${id}`)
     }
 }
 
+export const apiAuth = {
+
+}
 //types
 
 type GetUsersResponseType = {
     error: null | string,
     items: UsersDataType[]
     totalCount: number
+}
+
+type ResponseType<T = {}> = {
+    data: T
+    fieldsErrors: string[]
+    messages: string[]
+    resultCode: number
 }

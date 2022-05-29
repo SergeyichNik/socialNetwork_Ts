@@ -11,7 +11,7 @@ import {
     selectFromUsersReducer
 } from "../../redux";
 import {Preloader} from "../common/Preloader";
-import {apiUsers} from "../../api/api";
+import {apiUsers} from "../../api";
 
 const  UsersContainer = () => {
 
