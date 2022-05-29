@@ -2,14 +2,14 @@ import React, {FC} from 'react';
 
 import './App.css';
 
-import Navigation from "./conponents/Navigation/Navigation";
+import Navigation from "./components/Navigation/Navigation";
 import {Route, Routes} from "react-router-dom";
-import {Music} from "./conponents/Music/Music";
-import {News} from "./conponents/News/News";
-import {Settings} from "./conponents/Settings/Settings";
-import DialogsContainer from "./conponents/Dialogs/DialogsContainer";
+import {Music} from "./components/Music/Music";
+import {News} from "./components/News/News";
+import {Settings} from "./components/Settings/Settings";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
-import {HeaderContainer, ProfileContainer, UsersContainer} from "./conponents";
+import {HeaderContainer, ProfileContainer, UsersContainer} from "./components";
 
 const App: FC = () => {
 

@@ -11,6 +11,7 @@ import {
     toggleIsFetchingAC, unfollowAC
 } from "../../redux/action-creator/ActionCreator";
 import {Preloader} from "../common/Preloader";
+import {apiUsers} from "../../api/api";
 
 const  UsersContainer = () => {
 
@@ -24,12 +25,9 @@ const  UsersContainer = () => {
     } = useSelector(selectFromUsersReducer)
 
     useEffect(() => {
-
         dispatch(toggleIsFetchingAC(true));
         if (users.length === 0) {
-            axios.get(
-                `https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`,
-                { withCredentials: true })
+            apiUsers.getUsers(currentPage, pageSize)
                 .then(response => {
                     dispatch(toggleIsFetchingAC(false));
                     dispatch(setUsersAC(response.data.items));
