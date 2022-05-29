@@ -1,15 +1,15 @@
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect} from "react";
-import axios from "axios";
 import {Users} from "./Users";
-import {selectFromUsersReducer} from "../../redux/usersReducer";
 import {
     followAC,
     setCurrentPageAC,
     setTotalUsersCountAC,
     setUsersAC,
-    toggleIsFetchingAC, unfollowAC
-} from "../../redux/action-creator/ActionCreator";
+    toggleIsFetchingAC,
+    unfollowAC,
+    selectFromUsersReducer
+} from "../../redux";
 import {Preloader} from "../common/Preloader";
 import {apiUsers} from "../../api/api";
 
@@ -28,10 +28,10 @@ const  UsersContainer = () => {
         dispatch(toggleIsFetchingAC(true));
         if (users.length === 0) {
             apiUsers.getUsers(currentPage, pageSize)
-                .then(response => {
+                .then(res => {
                     dispatch(toggleIsFetchingAC(false));
-                    dispatch(setUsersAC(response.data.items));
-                    dispatch(setTotalUsersCountAC(response.data.totalCount))
+                    dispatch(setUsersAC(res.items));
+                    dispatch(setTotalUsersCountAC(res.totalCount))
                 })
         }
 
@@ -39,11 +39,10 @@ const  UsersContainer = () => {
 
     const onCurrentPageChange = (page: number) => {
         dispatch(toggleIsFetchingAC(true))
-        axios.get(
-            `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${pageSize}`)
-            .then(response => {
+        apiUsers.getUsers(page, pageSize)
+            .then(res => {
                 dispatch(toggleIsFetchingAC(false));
-                dispatch(setUsersAC(response.data.items));
+                dispatch(setUsersAC(res.items));
             })
         dispatch(setCurrentPageAC(page))
     }
