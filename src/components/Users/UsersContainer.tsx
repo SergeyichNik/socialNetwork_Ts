@@ -12,6 +12,7 @@ import {
 } from "../../redux";
 import {Preloader} from "../common/Preloader";
 import {apiUsers} from "../../api";
+import {followingInProgressAC} from "../../redux/action-creator/ActionCreator";
 
 const  UsersContainer = () => {
 
@@ -22,6 +23,7 @@ const  UsersContainer = () => {
         currentPage,
         isFetching,
         totalUsersCount,
+        followingInProgress,
     } = useSelector(selectFromUsersReducer)
 
     useEffect(() => {
@@ -53,6 +55,11 @@ const  UsersContainer = () => {
 
     const onFollowClick = (userId: number) => {
         dispatch(followAC(userId))
+
+    }
+
+    const toggleFollowingInProgress = (isFetching: boolean, id: number) => {
+        dispatch(followingInProgressAC(isFetching, id))
     }
 
     return (
@@ -65,6 +72,8 @@ const  UsersContainer = () => {
                    onUnfollowClick={onUnfollowClick}
                    onFollowClick={onFollowClick}
                    onCurrentPageChange={onCurrentPageChange}
+                   followingInProgress={followingInProgress}
+                   toggleFollowingInProgress={toggleFollowingInProgress}
             />
         </>
     )

@@ -8,6 +8,7 @@ export type UsersReducerActionsTypes =
     | ReturnType<typeof setCurrentPageAC>
     | ReturnType<typeof setTotalUsersCountAC>
     | ReturnType<typeof toggleIsFetchingAC>
+    | ReturnType<typeof followingInProgressAC>
 
 
     export const followAC = (userId: number) => {
@@ -60,4 +61,16 @@ export type UsersReducerActionsTypes =
             }
         } as const
     }
+
+export const followingInProgressAC = (isFetching: boolean, id: number) => {
+    return {
+        type: "SET_FOLLOWING_IN_PROGRESS",
+        payload: {
+            id,
+            isFetching,
+        }
+    } as const
+}
+
+
 
