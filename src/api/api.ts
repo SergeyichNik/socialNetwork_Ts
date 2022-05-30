@@ -1,6 +1,6 @@
 import axios from "axios";
 import {UsersDataType} from "../redux/users-reducer";
-import {setUserProfileAC} from "../redux/profile-reducer";
+import {UserProfileType} from "../redux/profile-reducer";
 
 const instance = axios.create({
     baseURL: "https://social-network.samuraijs.com/api/1.0/",
@@ -27,16 +27,21 @@ export const  apiUsers = {
 
 export const apiProfile = {
     getUserProfile(id: string | undefined) {
-        return instance.get(
+        return instance.get<UserProfileType>(
             `profile/${id}`)
     }
 }
 
 export const apiAuth = {
-
+    me() {
+        return instance.get<ResponseType<MeResponseType>>(
+            `auth/me`)
+            .then(res => res.data)
+    }
 }
-//types
 
+
+//types
 type GetUsersResponseType = {
     error: null | string,
     items: UsersDataType[]
@@ -49,3 +54,10 @@ type ResponseType<T = {}> = {
     messages: string[]
     resultCode: number
 }
+
+export type MeResponseType = {
+    email: string
+    id: number
+    login: string
+}
+

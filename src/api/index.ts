@@ -1,1 +1,1 @@
-export { apiUsers, apiProfile } from "./api"
+export { apiUsers, apiProfile, apiAuth } from "./api"

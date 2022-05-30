@@ -1,7 +1,9 @@
-import { RootStateType } from "./redux-store";
+import {RootStateType, ThunkActionType} from "./redux-store";
+import {apiAuth} from "../api";
+import {MeResponseType} from "../api/api";
 
 
-const initialState: AuthMeUserDataType = {
+const initialState: MeDomainDataType = {
     id: null,
     email: null,
     login: null,
@@ -10,10 +12,10 @@ const initialState: AuthMeUserDataType = {
 
 
 
-const authReducer = (
-    state: AuthMeUserDataType = initialState,
+export const authReducer = (
+    state: MeDomainDataType = initialState,
     action: AuthReducerActionsType
-): AuthMeUserDataType  => {
+): MeDomainDataType  => {
     switch(action.type) {
         case "SET_USER_DATA":
 
@@ -27,10 +29,10 @@ const authReducer = (
     }
 }
 
+export const selectFromAuthReducer = (state: RootStateType) => state.auth
+
 //action creators
-
-export const setUserDataAC = (data: AuthMeUserDataType) => {
-
+export const setUserDataAC = (data: MeResponseType) => {
     return {
         type: "SET_USER_DATA",
         payload: {
@@ -39,9 +41,20 @@ export const setUserDataAC = (data: AuthMeUserDataType) => {
         }
     } as const
 }
+// thunkCreator
+export const meTC = (): ThunkActionType => (
+    dispatch
+) => {
+    apiAuth.me()
+        .then(res => {
+            if (res.resultCode === 0) {
+                dispatch(setUserDataAC(res.data))
+            }
+        })
+}
 
 //types
-export type AuthMeUserDataType = {
+export type MeDomainDataType = {
     id: null | number,
     email: null | string,
     login: null | string,
@@ -50,6 +63,3 @@ export type AuthMeUserDataType = {
 
 export type AuthReducerActionsType =
     | ReturnType<typeof setUserDataAC>
-
-export const selectFromAuthReducer = (state: RootStateType) => state.auth
-export default authReducer;

@@ -1,5 +1,4 @@
 import {RootStateType, ThunkActionType} from "./redux-store";
-import axios from "axios";
 import {apiProfile} from "../api";
 
 
@@ -13,7 +12,7 @@ const initialState: ProfilePageType = {
     profile: undefined
 }
 
-const profileReducer = (state = initialState, action: ProfileReducerActionsTypes) => {
+export const profileReducer = (state = initialState, action: ProfileReducerActionsTypes) => {
     switch (action.type) {
         case "ADD_POST":
             const newPost = {
@@ -38,7 +37,6 @@ const profileReducer = (state = initialState, action: ProfileReducerActionsTypes
 }
 
 export const selectFromProfileReducer = (state: RootStateType) => state.profilePage.profile
-export default profileReducer;
 
 //actionsCreators
 export const setUserProfileAC = (profile: UserProfileType) => {
