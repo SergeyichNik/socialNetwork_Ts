@@ -9,7 +9,8 @@ import {News} from "./components/News/News";
 import {Settings} from "./components/Settings/Settings";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
-import {HeaderContainer, ProfileContainer, UsersContainer} from "./components";
+import {HeaderContainer, Login, ProfileContainer, UsersContainer} from "./components";
+import {RequireAuth} from "./hocs/RequireAuth";
 
 const App: FC = () => {
 
@@ -20,15 +21,22 @@ const App: FC = () => {
             <Navigation/>
             <div className='app-wrapper-content'>
                 <Routes>
+
                     <Route path={'/Dialogs'} element={<DialogsContainer />}/>
                     <Route path={'profile'}>
                         <Route path={':userID'} element={<ProfileContainer/>}/>
                     </Route>
 
-                    <Route path={'/Users'} element={<UsersContainer/>}/>
+                    <Route path={'/Users'} element={
+                        <RequireAuth>
+                            <UsersContainer/>
+                        </RequireAuth>
+                    }/>
                     <Route path={'/News'} element={<News/>}/>
                     <Route path={'/Music'} element={<Music/>}/>
                     <Route path={'/Settings'} element={<Settings/>}/>
+                    <Route path={'/login'} element={<Login/>}/>
+
                 </Routes>
             </div>
 

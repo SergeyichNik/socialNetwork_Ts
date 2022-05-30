@@ -48,17 +48,6 @@ export const setUserProfileAC = (profile: UserProfileType) => {
     } as const
 }
 
-//thunkCreators
-
-export const setUserProfileTC = (id: string | undefined): ThunkActionType => (
-    dispatch
-) => {
-    apiProfile.getUserProfile(id)
-        .then(res => {
-            dispatch(setUserProfileAC(res.data))
-        })
-}
-
 export const addPostAC = () => {
     return {
         type: "ADD_POST"
@@ -71,6 +60,15 @@ export const updatePostAC = (text: string) => {
     } as const
 }
 
+//thunkCreators
+export const setUserProfileTC = (id: string | undefined): ThunkActionType => (
+    dispatch
+) => {
+    apiProfile.getUserProfile(id)
+        .then(res => {
+            dispatch(setUserProfileAC(res.data))
+        })
+}
 
 //types
 export type ProfileReducerActionsTypes =
@@ -101,6 +99,7 @@ export type UserProfileType =  {
     userId: number
 
 }
+
 type PostType = {
     id: number,
     message: string,
