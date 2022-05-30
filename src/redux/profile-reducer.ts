@@ -1,5 +1,6 @@
 import {RootStateType, ThunkActionType} from "./redux-store";
 import axios from "axios";
+import {apiProfile} from "../api";
 
 
 const initialState: ProfilePageType = {
@@ -54,12 +55,10 @@ export const setUserProfileAC = (profile: UserProfileType) => {
 export const setUserProfileTC = (id: string | undefined): ThunkActionType => (
     dispatch
 ) => {
-    axios.get(
-        `https://social-network.samuraijs.com/api/1.0/profile/${id}`)
+    apiProfile.getUserProfile(id)
         .then(res => {
             dispatch(setUserProfileAC(res.data))
         })
-
 }
 
 export const addPostAC = () => {

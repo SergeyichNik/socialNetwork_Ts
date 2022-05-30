@@ -1,5 +1,6 @@
 import axios from "axios";
 import {UsersDataType} from "../redux/users-reducer";
+import {setUserProfileAC} from "../redux/profile-reducer";
 
 const instance = axios.create({
     baseURL: "https://social-network.samuraijs.com/api/1.0/",
@@ -21,6 +22,13 @@ export const  apiUsers = {
     },
     followRequest(id: number) {
         return instance.post<ResponseType>(`follow/${id}`)
+    }
+}
+
+export const apiProfile = {
+    getUserProfile(id: string | undefined) {
+        return instance.get(
+            `profile/${id}`)
     }
 }
 
