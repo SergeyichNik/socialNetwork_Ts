@@ -1,9 +1,6 @@
 import {v1} from "uuid";
 
 
-
-
-
 const initialState: DialogsPageType = {
     dialogsData: [
         {
@@ -63,8 +60,8 @@ export const updateNewMessageBodyAC = (text: string) => {
         text
     } as const
 }
-//types
 
+//types
 export type DialogsReducerActionsType =
     | ReturnType<typeof updateNewMessageBodyAC>
     | ReturnType<typeof sendMessageAC>
@@ -81,7 +78,7 @@ type DialogsUserType = {
     avatar: string,
 }
 
-type MessageType = {
+export type MessageType = {
     id: string,
     message: string,
 }

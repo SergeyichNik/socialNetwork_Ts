@@ -1,16 +1,16 @@
-import React from "react";
-import {DispatchType, StateType} from "../../../redux/store";
-import {addPostAC, updatePostAC} from "../../../redux/profile-reducer";
+import React, {Dispatch} from "react";
+import {addPostAC, ProfileReducerActionsTypes, updatePostAC} from "../../../redux/profile-reducer";
 import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
+import {RootStateType} from "../../../redux/redux-store";
 
-const mapStateToProps = (state: StateType) => {
+const mapStateToProps = (state: RootStateType) => {
 
     return {
         profilePage: state.profilePage
     }
 }
-const mapDispatchToProps = (dispatch: DispatchType) => {
+const mapDispatchToProps = (dispatch: Dispatch<ProfileReducerActionsTypes>) => {
     return {
         updateNewPostText: (text: string) => {
             dispatch(updatePostAC(text))

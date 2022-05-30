@@ -1,9 +1,9 @@
 import classes from "./Dialogs.module.css";
 import React, {FC} from "react";
 import {DialogsItem} from "./DialogItem/DialogsItem";
-import {DialogsPageType} from "../../redux/store";
 import {NavLink} from "react-router-dom";
 import {MessageArea} from "./Message/MessageArea/MessageArea";
+import {DialogsPageType} from "../../redux/dialogs-reducer";
 
 
 

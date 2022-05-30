@@ -1,10 +1,11 @@
 import classes from "../../Dialogs.module.css";
-import {messagesDataType,} from "../../../../redux/store";
+
 import {ChangeEvent, FC} from "react";
 import {Message} from "../Message";
+import {MessageType} from "../../../../redux/dialogs-reducer";
 
 type PropsType = {
-    messagesData: messagesDataType[]
+    messagesData: MessageType[]
     value: string
     sendMessage: () => void
     updateNewMessageBody: (text: string) => void
