@@ -1,7 +1,7 @@
 import classes from "./ProfileInfo.module.css";
 import React from "react";
 import {useSelector} from "react-redux";
-import {selectFromProfileReducer} from "../../../redux/profileReducer";
+import {selectFromProfileReducer} from "../../../redux/profile-reducer";
 import avatarPlug from "../../../assets/images/avatar.png"
 
 

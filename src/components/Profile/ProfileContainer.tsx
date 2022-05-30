@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import Profile from "./Profile";
 import axios from "axios";
 import {useDispatch} from "react-redux";
-import {setUserProfileAC} from "../../redux/profileReducer";
+import {setUserProfileAC} from "../../redux/profile-reducer";
 import {useParams} from "react-router-dom";
 
 const ProfileContainer= () => {

@@ -1,5 +1,5 @@
-import {UsersReducerActionsTypes} from "./action-creator/ActionCreator";
-import {StoreType} from "./reduxStore";
+import {UsersReducerActionsTypes} from "./action-creator/action-creators-users-reducer";
+import {RootStateType} from "./redux-store";
 
 export type UsersDataType = {
     followed: boolean,
@@ -60,4 +60,4 @@ export const usersReducer = (state = initialState, action: UsersReducerActionsTy
     }
 }
 
-export const selectFromUsersReducer = (state: StoreType) => state.usersPage
+export const selectFromUsersReducer = (state: RootStateType) => state.usersPage

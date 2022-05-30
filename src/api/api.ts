@@ -1,5 +1,5 @@
 import axios from "axios";
-import {UsersDataType} from "../redux/usersReducer";
+import {UsersDataType} from "../redux/users-reducer";
 
 const instance = axios.create({
     baseURL: "https://social-network.samuraijs.com/api/1.0/",

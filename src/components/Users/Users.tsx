@@ -1,9 +1,8 @@
 import classes from "./Users.module.css";
-import {UsersDataType} from "../../redux/usersReducer";
+import {UsersDataType} from "../../redux/users-reducer";
 import React, {FC} from "react";
 import avatar from "../../assets/images/avatar.png"
 import {Link} from "react-router-dom";
-import {apiUsers} from "../../api";
 
 type PropsType = {
     users: UsersDataType[]
@@ -14,7 +13,6 @@ type PropsType = {
     totalUsersCount: number
     currentPage: number
     followingInProgress: number[]
-    toggleFollowingInProgress: (isFetching: boolean, id: number) => void
 }
 
 
@@ -22,7 +20,6 @@ export const Users: FC<PropsType> = (props) => {
 
     const {
         users,
-        toggleFollowingInProgress,
         onCurrentPageChange,
         onUnfollowClick,
         onFollowClick,
@@ -65,26 +62,10 @@ export const Users: FC<PropsType> = (props) => {
                             </Link>
                             {item.followed
                                 ? <button disabled={isInProgress}
-                                          onClick={() => {
-                                            toggleFollowingInProgress(true, item.id)
-                                            apiUsers.unfollowRequest(item.id)
-                                        .then(res => {
-                                            if (res.data.resultCode === 0) {
-                                                onUnfollowClickHandler()
-                                                toggleFollowingInProgress(false, item.id)
-                                            }
-                                        })}}>Unfollow</button>
+                                          onClick={onUnfollowClickHandler}>Unfollow</button>
+
                                 : <button disabled={isInProgress}
-                                          onClick={() => {
-                                              toggleFollowingInProgress(true, item.id)
-                                              apiUsers.followRequest(item.id)
-                                        .then(res => {
-                                            if (res.data.resultCode === 0) {
-                                                onFollowClickHandler()
-                                                toggleFollowingInProgress(false, item.id)
-                                            }
-                                        })
-                                }}>Follow</button>}
+                                          onClick={onFollowClickHandler}>Follow</button>}
                         </div>
                         <div className={classes.text}>
                             <div className={classes.textItem}>

@@ -1,18 +1,11 @@
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect} from "react";
 import {Users} from "./Users";
-import {
-    followAC,
-    setCurrentPageAC,
-    setTotalUsersCountAC,
-    setUsersAC,
-    toggleIsFetchingAC,
-    unfollowAC,
-    selectFromUsersReducer
-} from "../../redux";
+import {selectFromUsersReducer, setCurrentPageAC, setUsersAC, toggleIsFetchingAC} from "../../redux";
 import {Preloader} from "../common/Preloader";
 import {apiUsers} from "../../api";
-import {followingInProgressAC} from "../../redux/action-creator/ActionCreator";
+import {fetchUsersTC, followTC, unfollowTC} from "../../redux/action-creator";
+
 
 const  UsersContainer = () => {
 
@@ -27,16 +20,7 @@ const  UsersContainer = () => {
     } = useSelector(selectFromUsersReducer)
 
     useEffect(() => {
-        dispatch(toggleIsFetchingAC(true));
-        if (users.length === 0) {
-            apiUsers.getUsers(currentPage, pageSize)
-                .then(res => {
-                    dispatch(toggleIsFetchingAC(false));
-                    dispatch(setUsersAC(res.items));
-                    dispatch(setTotalUsersCountAC(res.totalCount))
-                })
-        }
-
+        dispatch(fetchUsersTC(currentPage, pageSize));
     }, []);
 
     const onCurrentPageChange = (page: number) => {
@@ -50,17 +34,14 @@ const  UsersContainer = () => {
     }
 
     const onUnfollowClick = (userId: number) => {
-        dispatch(unfollowAC(userId))
+        dispatch(unfollowTC(userId))
     }
 
     const onFollowClick = (userId: number) => {
-        dispatch(followAC(userId))
+        dispatch(followTC(userId))
 
     }
 
-    const toggleFollowingInProgress = (isFetching: boolean, id: number) => {
-        dispatch(followingInProgressAC(isFetching, id))
-    }
 
     return (
         <>
@@ -73,7 +54,6 @@ const  UsersContainer = () => {
                    onFollowClick={onFollowClick}
                    onCurrentPageChange={onCurrentPageChange}
                    followingInProgress={followingInProgress}
-                   toggleFollowingInProgress={toggleFollowingInProgress}
             />
         </>
     )

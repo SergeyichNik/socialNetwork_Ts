@@ -1,4 +1,4 @@
-import {StoreType} from "./reduxStore";
+import { RootStateType } from "./redux-store";
 
 
 const initialState: AuthMeUserDataType = {
@@ -51,5 +51,5 @@ export type AuthMeUserDataType = {
 export type AuthReducerActionsType =
     | ReturnType<typeof setUserDataAC>
 
-export const selectFromAuthReducer = (state: StoreType) => state.auth
+export const selectFromAuthReducer = (state: RootStateType) => state.auth
 export default authReducer;

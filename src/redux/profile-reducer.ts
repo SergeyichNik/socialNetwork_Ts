@@ -1,5 +1,5 @@
 import {postDataType} from "./store";
-import {StoreType} from "./reduxStore";
+import {RootStateType} from "./redux-store";
 
 const ADD_POST = "ADD_POST"
 const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT"
@@ -104,7 +104,7 @@ export const updatePostAC = (text: string) => {
     } as const
 }
 
-export const selectFromProfileReducer = (state: StoreType) => state.profilePage.profile
+export const selectFromProfileReducer = (state: RootStateType) => state.profilePage.profile
 
 export default profileReducer;
 

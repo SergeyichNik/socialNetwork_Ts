@@ -1,23 +1,17 @@
-import React, {FC} from "react";
-import {ActionType, DispatchType, StateType} from "../../redux/store";
+import React, {Dispatch} from "react";
 import {Dialogs} from "./Dialogs";
-import {sendMessageAC, updateNewMessageBodyAC} from "../../redux/dialogsReducer";
+import {DialogsReducerActionsType, sendMessageAC, updateNewMessageBodyAC} from "../../redux/dialogs-reducer";
 import {connect} from "react-redux";
+import {RootStateType} from "../../redux/redux-store";
 
-type PropsType = {
-    store: {
-        getState: () => StateType,
-        dispatch: (action: ActionType) => void
-    }
-}
 
-let mapStateToProps = (state: StateType) => {
+let mapStateToProps = (state: RootStateType) => {
     return {
         dialogsPage: state.dialogsPage
     }
 }
 
-let mapDispatchToProps = (dispatch: DispatchType) => {
+let mapDispatchToProps = (dispatch: Dispatch<DialogsReducerActionsType>) => {
     return {
         updateNewMessageBody: (text: string) => {
             dispatch(updateNewMessageBodyAC(text))

@@ -1,32 +1,8 @@
 import {v1} from "uuid";
-import {
-    ActionType,
-    DialogsPageType,
-    messagesDataType,
-} from "./store";
 
-const UPDATE_MESSAGE_BODY = "UPDATE_MESSAGE_BODY"
-const SEND_NEW_MESSAGE = "SEND_NEW_MESSAGE"
 
-export type UpdateMessageBodyActionType = {
-    type: typeof UPDATE_MESSAGE_BODY,
-    text: string
-}
-export type SendNewMessageActionType = {
-    type: typeof SEND_NEW_MESSAGE
-}
 
-export const sendMessageAC = (): SendNewMessageActionType => {
-    return {
-        type: "SEND_NEW_MESSAGE"
-    }
-}
-export const updateNewMessageBodyAC = (text: string): UpdateMessageBodyActionType => {
-    return {
-        type: "UPDATE_MESSAGE_BODY",
-        text
-    }
-}
+
 
 const initialState: DialogsPageType = {
     dialogsData: [
@@ -58,21 +34,55 @@ const initialState: DialogsPageType = {
     newMessageBody: ''
 }
 
-export const dialogsReducer = (state = initialState, action: ActionType) => {
+export const dialogsReducer = (state = initialState, action: DialogsReducerActionsType) => {
     switch (action.type) {
-        case SEND_NEW_MESSAGE:
-            const newMessage: messagesDataType = {
+        case "SEND_NEW_MESSAGE":
+            const newMessage: MessageType = {
                 id: v1(),
                 message: state.newMessageBody
             }
             state = {...state, messagesData: [...state.messagesData, newMessage]}
             state.newMessageBody = ''
             return state;
-        case UPDATE_MESSAGE_BODY:
+        case "UPDATE_MESSAGE_BODY":
             return state = {...state, newMessageBody: action.text}
         default:
             return state
     }
 }
 
-export default dialogsReducer;
+//actions creators
+export const sendMessageAC = () => {
+    return {
+        type: "SEND_NEW_MESSAGE"
+    } as const
+}
+export const updateNewMessageBodyAC = (text: string) => {
+    return {
+        type: "UPDATE_MESSAGE_BODY",
+        text
+    } as const
+}
+//types
+
+export type DialogsReducerActionsType =
+    | ReturnType<typeof updateNewMessageBodyAC>
+    | ReturnType<typeof sendMessageAC>
+
+export type DialogsPageType = {
+    dialogsData: DialogsUserType[],
+    messagesData: MessageType[],
+    newMessageBody: string,
+}
+
+type DialogsUserType = {
+    id: number,
+    name: string,
+    avatar: string,
+}
+
+type MessageType = {
+    id: string,
+    message: string,
+}
+

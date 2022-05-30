@@ -7,4 +7,6 @@ export {
     followAC,
 } from "./action-creator"
 
-export { selectFromUsersReducer } from "./usersReducer"
+export { selectFromUsersReducer } from "./users-reducer"
+
+export { dialogsReducer } from "./dialogs-reducer"
