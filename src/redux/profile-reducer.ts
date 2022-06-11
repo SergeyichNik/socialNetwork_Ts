@@ -61,7 +61,7 @@ export const updatePostAC = (text: string) => {
 }
 
 //thunkCreators
-export const setUserProfileTC = (id: string | undefined): ThunkActionType => (
+export const setUserProfileTC = (id: number | null): ThunkActionType => (
     dispatch
 ) => {
     apiProfile.getUserProfile(id)

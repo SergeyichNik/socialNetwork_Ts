@@ -1,11 +1,13 @@
 
 .appNav {
+    display: flex;
+    flex-direction: column;
     min-height: 80vh;
     grid-area: nav;
     padding: 10px 20px;
     background-color: #4E96D2;
     border-radius: 5px;
-    box-shadow: 0px 0px 8px darkslategray;
+    box-shadow: 0 0 8px darkslategray;
 }
 
 .appNav a {

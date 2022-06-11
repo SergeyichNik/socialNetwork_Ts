@@ -1,46 +1,43 @@
 import React, {FC} from 'react';
-
 import './App.css';
-
-import Navigation from "./components/Navigation/Navigation";
 import {Route, Routes} from "react-router-dom";
 import {Music} from "./components/Music/Music";
 import {News} from "./components/News/News";
 import {Settings} from "./components/Settings/Settings";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-
-import {HeaderContainer, Login, ProfileContainer, UsersContainer} from "./components";
+import {Layout, Login, ProfileContainer, UsersContainer} from "./components";
 import {RequireAuth} from "./hocs/RequireAuth";
+import {DIALOGS, LOGIN, MUSIC, NEWS, PROFILE, PROFILE_USER_ID, ROOT_ROUTE, SETTINGS, USERS} from "./constants";
 
 const App: FC = () => {
 
-
     return (
-        <div className='app-wrapper'>
-            <HeaderContainer/>
-            <Navigation/>
-            <div className='app-wrapper-content'>
-                <Routes>
-
-                    <Route path={'/Dialogs'} element={<DialogsContainer />}/>
-                    <Route path={'profile'}>
-                        <Route path={':userID'} element={<ProfileContainer/>}/>
-                    </Route>
-
-                    <Route path={'/Users'} element={
+        <>
+            <Routes>
+                <Route path={ROOT_ROUTE} element={<Layout/>}>
+                    <Route path={PROFILE} element={
+                        <RequireAuth>
+                            <ProfileContainer/>
+                        </RequireAuth>
+                    }/>
+                    <Route path={PROFILE_USER_ID} element={<ProfileContainer/>}/>
+                    <Route path={DIALOGS} element={
+                        <RequireAuth>
+                            <DialogsContainer/>
+                        </RequireAuth>
+                    }/>
+                    <Route path={USERS} element={
                         <RequireAuth>
                             <UsersContainer/>
                         </RequireAuth>
                     }/>
-                    <Route path={'/News'} element={<News/>}/>
-                    <Route path={'/Music'} element={<Music/>}/>
-                    <Route path={'/Settings'} element={<Settings/>}/>
-                    <Route path={'/login'} element={<Login/>}/>
-
-                </Routes>
-            </div>
-
-        </div>
+                    <Route path={NEWS} element={<News/>}/>
+                    <Route path={MUSIC} element={<Music/>}/>
+                    <Route path={SETTINGS} element={<Settings/>}/>
+                    <Route path={LOGIN} element={<Login/>}/>
+                </Route>
+            </Routes>
+        </>
     );
 }
 

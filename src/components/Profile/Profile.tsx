@@ -1,15 +1,26 @@
 import React, {FC} from "react";
-import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
+import {useMatch} from "react-router-dom";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import {PROFILE} from "../../constants";
+import {ProfileInfo} from "./profile-info";
 
 const Profile: FC = () => {
 
+    const match = useMatch(PROFILE)
+
+    if (match) {
+        return (
+            <>
+                <ProfileInfo/>
+                <MyPostsContainer/>
+            </>
+        )
+    }
 
     return (
-        <div>
+        <>
             <ProfileInfo/>
-            <MyPostsContainer />
-        </div>
+        </>
     )
 }
 

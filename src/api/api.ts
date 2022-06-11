@@ -26,7 +26,7 @@ export const  apiUsers = {
 }
 
 export const apiProfile = {
-    getUserProfile(id: string | undefined) {
+    getUserProfile(id: number | null) {
         return instance.get<UserProfileType>(
             `profile/${id}`)
     }

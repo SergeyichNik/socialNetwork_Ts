@@ -1,4 +1,6 @@
 export { ProfileContainer } from "./Profile"
 export { UsersContainer } from "./Users"
-export { HeaderContainer } from "./Header"
+export { HeaderContainer } from "./header"
 export { Login } from "./login"
+export { Layout } from "./layout"
+export { CustomLink } from "./custom-link"
