@@ -9,10 +9,11 @@ const initialState: ProfilePageType = {
         {id: 2, message: 'my third post', likesCount: 11},
     ],
     newPostMessage: '',
-    profile: undefined
+    profile: undefined,
+    status: null
 }
 
-export const profileReducer = (state = initialState, action: ProfileReducerActionsTypes) => {
+export const profileReducer = (state = initialState, action: ProfileReducerActionsTypes): ProfilePageType => {
     switch (action.type) {
         case "ADD_POST":
             const newPost = {
@@ -27,6 +28,7 @@ export const profileReducer = (state = initialState, action: ProfileReducerActio
             return {...state,
                 newPostMessage: action.text};
         case "SET_USER_PROFILE":
+        case "SET_STATUS":
             return {
                 ...state,
                 ...action.payload
@@ -60,6 +62,15 @@ export const updatePostAC = (text: string) => {
     } as const
 }
 
+export const setUserStatusAC = (status: string) => {
+    return {
+        type: "SET_STATUS",
+        payload: {
+            status
+        }
+    } as const
+}
+
 //thunkCreators
 export const setUserProfileTC = (id: number | null): ThunkActionType => (
     dispatch
@@ -70,11 +81,22 @@ export const setUserProfileTC = (id: number | null): ThunkActionType => (
         })
 }
 
+export const fetchUserStatusTC = (id: number | null): ThunkActionType =>
+    (
+        dispatch
+    ) => {
+        apiProfile.getUserStatus(id)
+            .then(res => {
+                console.log(res)
+            })
+    }
+
 //types
 export type ProfileReducerActionsTypes =
     | ReturnType<typeof setUserProfileAC>
     | ReturnType<typeof addPostAC>
     | ReturnType<typeof updatePostAC>
+    | ReturnType<typeof setUserStatusAC>
 
 
 export type UserProfileType =  {
@@ -109,7 +131,8 @@ type PostType = {
 export type ProfilePageType = {
     newPostMessage: string,
     postData: PostType[],
-    profile?: UserProfileType
+    profile?: UserProfileType,
+    status: string | null,
 }
 
 

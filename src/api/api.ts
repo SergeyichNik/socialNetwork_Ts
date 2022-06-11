@@ -27,8 +27,10 @@ export const  apiUsers = {
 
 export const apiProfile = {
     getUserProfile(id: number | null) {
-        return instance.get<UserProfileType>(
-            `profile/${id}`)
+        return instance.get<UserProfileType>(`profile/${id}`)
+    },
+    getUserStatus(id: number | null) {
+        return instance.get(`profile/status/${id}`)
     }
 }
 
