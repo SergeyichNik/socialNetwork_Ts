@@ -1,14 +1,8 @@
-import axios from "axios";
-import {UsersDataType} from "../redux/users-reducer";
-import {UserProfileType} from "../redux/profile-reducer";
 
-const instance = axios.create({
-    baseURL: "https://social-network.samuraijs.com/api/1.0/",
-    withCredentials: true,
-    headers: {
-        "API-KEY": "17f3fe98-a96f-4c1a-a7eb-bebd7f1cb8ea"
-    }
-})
+import {UsersDataType} from "../store/users-reducer";
+import {UserProfileType} from "../store/profile-reducer";
+import {instance} from "./config";
+
 
 export const  apiUsers = {
     getUsers(currentPage: number, pageSize: number) {
@@ -30,7 +24,11 @@ export const apiProfile = {
         return instance.get<UserProfileType>(`profile/${id}`)
     },
     getUserStatus(id: number | null) {
-        return instance.get(`profile/status/${id}`)
+        return instance.get<GetUserStatusResType>(`profile/status/${id}`)
+    },
+    updateStatus(status: string) {
+        return instance.put<ResponseType>(`profile/status/`, {status: status})
+            .then(res => res.data)
     }
 }
 
@@ -49,6 +47,9 @@ type GetUsersResponseType = {
     items: UsersDataType[]
     totalCount: number
 }
+
+type GetUserStatusResType = string
+
 
 type ResponseType<T = {}> = {
     data: T

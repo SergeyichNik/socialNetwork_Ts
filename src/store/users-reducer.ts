@@ -1,5 +1,5 @@
-import {UsersReducerActionsTypes} from "./action-creator/action-creators-users-reducer";
-import {RootStateType} from "./redux-store";
+import {UsersReducerActionsTypes} from "./action-creator/users";
+import {RootStateType} from "./store";
 
 export type UsersDataType = {
     followed: boolean,

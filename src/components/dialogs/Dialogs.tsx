@@ -3,7 +3,7 @@ import React, {FC} from "react";
 import {DialogsItem} from "./DialogItem/DialogsItem";
 import {NavLink} from "react-router-dom";
 import {MessageArea} from "./Message/MessageArea/MessageArea";
-import {DialogsPageType} from "../../redux/dialogs-reducer";
+import {DialogsPageType} from "../../store/dialogs-reducer";
 
 
 

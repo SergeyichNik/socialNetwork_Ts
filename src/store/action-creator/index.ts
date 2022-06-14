@@ -9,5 +9,5 @@ export {
     setUsersAC,
     unfollowAC,
     followAC,
-} from "./action-creators-users-reducer"
+} from "./users"
 

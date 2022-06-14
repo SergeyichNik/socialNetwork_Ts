@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {Header} from "./Header";
 import {useDispatch, useSelector} from "react-redux";
-import {meTC, selectFromAuthReducer} from "../../redux";
+import {meTC, selectFromAuthReducer} from "../../store";
 
 
 

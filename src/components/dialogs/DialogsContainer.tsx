@@ -1,8 +1,8 @@
 import React, {Dispatch} from "react";
 import {Dialogs} from "./Dialogs";
-import {DialogsReducerActionsType, sendMessageAC, updateNewMessageBodyAC} from "../../redux/dialogs-reducer";
+import {DialogsReducerActionsType, sendMessageAC, updateNewMessageBodyAC} from "../../store/dialogs-reducer";
 import {connect} from "react-redux";
-import {RootStateType} from "../../redux/redux-store";
+import {RootStateType} from "../../store/store";
 
 
 let mapStateToProps = (state: RootStateType) => {

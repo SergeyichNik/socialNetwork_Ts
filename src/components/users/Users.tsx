@@ -1,5 +1,5 @@
 import classes from "./Users.module.css";
-import {UsersDataType} from "../../redux/users-reducer";
+import {UsersDataType} from "../../store/users-reducer";
 import React, {FC} from "react";
 import avatar from "../../assets/images/avatar.png"
 import {Link} from "react-router-dom";

@@ -1,10 +1,10 @@
 import React, {FC} from 'react';
 import './App.css';
 import {Route, Routes} from "react-router-dom";
-import {Music} from "./components/Music/Music";
-import {News} from "./components/News/News";
-import {Settings} from "./components/Settings/Settings";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import {Music} from "./components/music/Music";
+import {News} from "./components/news/News";
+import {Settings} from "./components/settings/Settings";
+import DialogsContainer from "./components/dialogs/DialogsContainer";
 import {Layout, Login, ProfileContainer, UsersContainer} from "./components";
 import {RequireAuth} from "./hocs/RequireAuth";
 import {DIALOGS, LOGIN, MUSIC, NEWS, PROFILE, PROFILE_USER_ID, ROOT_ROUTE, SETTINGS, USERS} from "./constants";

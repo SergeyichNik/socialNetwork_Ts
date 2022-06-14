@@ -1,5 +1,5 @@
-export { ProfileContainer } from "./Profile"
-export { UsersContainer } from "./Users"
+export { ProfileContainer } from "./profile"
+export { UsersContainer } from "./users"
 export { HeaderContainer } from "./header"
 export { Login } from "./login"
 export { Layout } from "./layout"

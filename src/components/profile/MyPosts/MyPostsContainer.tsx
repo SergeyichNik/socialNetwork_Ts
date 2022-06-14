@@ -1,8 +1,8 @@
 import React, {Dispatch} from "react";
-import {addPostAC, ProfileReducerActionsTypes, updatePostAC} from "../../../redux/profile-reducer";
+import {addPostAC, ProfileReducerActionsTypes, updatePostAC} from "../../../store/profile-reducer";
 import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
-import {RootStateType} from "../../../redux/redux-store";
+import {RootStateType} from "../../../store/store";
 
 const mapStateToProps = (state: RootStateType) => {
 

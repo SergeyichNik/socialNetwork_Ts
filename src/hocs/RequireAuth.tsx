@@ -1,7 +1,7 @@
 import React from 'react';
 import {Navigate, useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {selectFromAuthReducer} from "../redux";
+import {selectFromAuthReducer} from "../store";
 
 export const RequireAuth = ({children} : {children: JSX.Element}) => {
 

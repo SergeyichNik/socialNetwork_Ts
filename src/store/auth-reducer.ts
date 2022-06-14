@@ -1,4 +1,4 @@
-import {RootStateType, ThunkActionType} from "./redux-store";
+import {RootStateType, ThunkActionType} from "./store";
 import {apiAuth} from "../api";
 import {MeResponseType} from "../api/api";
 

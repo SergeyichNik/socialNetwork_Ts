@@ -1,10 +1,10 @@
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect} from "react";
 import {Users} from "./Users";
-import {selectFromUsersReducer, setCurrentPageAC, setUsersAC, toggleIsFetchingAC} from "../../redux";
+import {selectFromUsersReducer, setCurrentPageAC, setUsersAC, toggleIsFetchingAC} from "../../store";
 import {Preloader} from "../common/Preloader";
 import {apiUsers} from "../../api";
-import {fetchUsersTC, followTC, unfollowTC} from "../../redux/action-creator";
+import {fetchUsersTC, followTC, unfollowTC} from "../../store/action-creator";
 
 
 const  UsersContainer = () => {

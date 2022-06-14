@@ -1,6 +1,6 @@
 import {UsersDataType} from "../users-reducer";
 import {apiUsers} from "../../api";
-import {ThunkActionType} from "../redux-store";
+import {ThunkActionType} from "../store";
 
 
 export type UsersReducerActionsTypes =
